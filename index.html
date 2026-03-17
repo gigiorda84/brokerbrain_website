@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broker-Brain | Finanziamenti facili per ciò che conta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --indigo: #6366F1;
+            --indigo-dark: #4F46E5;
+            --indigo-light: #818CF8;
+            --emerald: #10B981;
+            --emerald-dark: #059669;
+            --amber: #F59E0B;
+            --navy: #0F172A;
+            --navy-light: #1E293B;
+            --text: #1E293B;
+            --text-light: #64748B;
+            --text-lighter: #94A3B8;
+            --bg: #FFFFFF;
+            --bg-light: #F8FAFC;
+            --bg-warm: #FFFBEB;
+            --border: #E2E8F0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+            --radius: 16px;
+            --radius-lg: 24px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; color: var(--text); line-height: 1.6; background: var(--bg); }
+
+        /* ═══ NAV ═══ */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border); transition: box-shadow 0.3s;
+        }
+        nav.scrolled { box-shadow: var(--shadow); }
+        .nav-inner {
+            max-width: 1240px; margin: 0 auto; padding: 0 2rem;
+            display: flex; align-items: center; justify-content: space-between; height: 68px;
+        }
+        .logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+        .logo-mark {
+            width: 36px; height: 36px; border-radius: 10px;
+            background: linear-gradient(135deg, var(--indigo), var(--indigo-dark));
+            display: flex; align-items: center; justify-content: center;
+        }
+        .logo-mark svg { width: 20px; height: 20px; }
+        .logo-name { font-size: 1.25rem; font-weight: 800; color: var(--navy); letter-spacing: -0.03em; }
+        .logo-name span { color: var(--indigo); }
+
+        .nav-links { display: flex; align-items: center; gap: 0.3rem; list-style: none; }
+        .nav-links a {
+            text-decoration: none; color: var(--text-light); font-size: 0.88rem;
+            font-weight: 500; padding: 0.5rem 0.8rem; border-radius: 8px; transition: all 0.2s;
+        }
+        .nav-links a:hover { color: var(--navy); background: var(--bg-light); }
+        .nav-links .nav-sep { width: 1px; height: 20px; background: var(--border); margin: 0 0.3rem; }
+
+        .nav-cta-group { display: flex; gap: 0.6rem; align-items: center; }
+        .btn { display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 600; font-size: 0.88rem; padding: 0.55rem 1.2rem; border-radius: 10px; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; }
+        .btn-ghost { background: transparent; color: var(--indigo); }
+        .btn-ghost:hover { background: rgba(99,102,241,0.06); }
+        .btn-primary { background: var(--indigo); color: #fff; }
+        .btn-primary:hover { background: var(--indigo-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(99,102,241,0.3); }
+        .btn-emerald { background: var(--emerald); color: #fff; }
+        .btn-emerald:hover { background: var(--emerald-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(16,185,129,0.3); }
+        .btn-dark { background: var(--navy); color: #fff; }
+        .btn-dark:hover { background: var(--navy-light); transform: translateY(-1px); }
+        .btn-outline { background: transparent; color: var(--navy); border: 1.5px solid var(--border); }
+        .btn-outline:hover { border-color: var(--navy); }
+        .btn-lg { padding: 0.8rem 1.8rem; font-size: 1rem; border-radius: 12px; }
+        .btn-xl { padding: 1rem 2.2rem; font-size: 1.05rem; border-radius: 14px; }
+
+        .mobile-btn { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+        .mobile-btn span { display: block; width: 22px; height: 2px; background: var(--navy); margin: 5px 0; border-radius: 2px; }
+
+        /* ═══ HERO ═══ */
+        .hero {
+            padding: 7.5rem 2rem 4rem; position: relative; overflow: hidden;
+            background: linear-gradient(135deg, #F8FAFC 0%, #EEF2FF 50%, #E0E7FF 100%);
+        }
+        .hero-inner {
+            max-width: 1240px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+        }
+        .hero-eyebrow {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(99,102,241,0.08); color: var(--indigo);
+            padding: 0.35rem 1rem; border-radius: 100px;
+            font-size: 0.8rem; font-weight: 600; margin-bottom: 1.5rem;
+        }
+        .hero-eyebrow .dot { width: 6px; height: 6px; background: var(--emerald); border-radius: 50%; animation: blink 2s infinite; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+        .hero h1 {
+            font-size: 3.5rem; font-weight: 900; color: var(--navy);
+            line-height: 1.08; letter-spacing: -0.035em; margin-bottom: 1.5rem;
+        }
+        .hero h1 em { font-style: normal; color: var(--indigo); }
+        .hero-sub {
+            font-size: 1.15rem; color: var(--text-light); line-height: 1.7;
+            margin-bottom: 2rem; max-width: 500px;
+        }
+        .hero-ctas { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+        .hero-proof {
+            display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+        }
+        .hero-proof-item {
+            display: flex; align-items: center; gap: 0.4rem;
+            font-size: 0.82rem; color: var(--text-light);
+        }
+        .hero-proof-item svg { width: 16px; height: 16px; stroke: var(--emerald); flex-shrink: 0; }
+        .hero-proof-item strong { color: var(--navy); }
+
+        .hero-visual { position: relative; }
+        .hero-visual img { width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
+
+        /* ═══ SECTION TAB SWITCH ═══ */
+        .audience-switch {
+            display: flex; justify-content: center; gap: 0.5rem;
+            padding: 1.5rem 2rem 0; background: var(--bg);
+        }
+        .switch-btn {
+            padding: 0.7rem 2rem; border-radius: 100px; font-weight: 600; font-size: 0.92rem;
+            cursor: pointer; border: 2px solid var(--border); background: var(--bg); color: var(--text-light);
+            transition: all 0.3s;
+        }
+        .switch-btn.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+        .switch-btn:hover:not(.active) { border-color: var(--navy); color: var(--navy); }
+
+        /* ═══ B2C SECTION ═══ */
+        .b2c-section { padding: 5rem 2rem; background: var(--bg); }
+        .b2c-inner { max-width: 1240px; margin: 0 auto; }
+        .b2c-header { text-align: center; margin-bottom: 4rem; }
+        .b2c-header .label { font-size: 0.78rem; font-weight: 700; color: var(--indigo); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.8rem; }
+        .b2c-header h2 { font-size: 2.6rem; font-weight: 900; color: var(--navy); letter-spacing: -0.03em; margin-bottom: 1rem; }
+        .b2c-header p { font-size: 1.08rem; color: var(--text-light); max-width: 600px; margin: 0 auto; }
+
+        .benefit-banner {
+            background: linear-gradient(135deg, var(--indigo), var(--indigo-dark));
+            border-radius: var(--radius-lg); padding: 3rem; color: #fff;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+            margin-bottom: 4rem;
+        }
+        .benefit-banner h3 { font-size: 2rem; font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; }
+        .benefit-banner p { font-size: 1rem; opacity: 0.85; margin-top: 0.8rem; line-height: 1.7; }
+        .benefit-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .benefit-stat {
+            background: rgba(255,255,255,0.12); border-radius: var(--radius); padding: 1.5rem;
+            text-align: center; backdrop-filter: blur(4px);
+        }
+        .benefit-stat .num { font-size: 2.2rem; font-weight: 900; }
+        .benefit-stat .desc { font-size: 0.82rem; opacity: 0.8; margin-top: 0.3rem; }
+
+        .how-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 4rem; }
+        .how-step {
+            text-align: center; padding: 2rem 1.5rem;
+            background: var(--bg-light); border-radius: var(--radius); border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+        .how-step:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+        .how-step img { width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 1.2rem; object-fit: cover; }
+        .how-step h4 { font-size: 1.1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; }
+        .how-step p { font-size: 0.88rem; color: var(--text-light); }
+
+        .b2c-categories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 3rem; }
+        .cat-card {
+            border-radius: var(--radius); overflow: hidden; position: relative;
+            aspect-ratio: 4/3; cursor: pointer; transition: transform 0.3s;
+        }
+        .cat-card:hover { transform: translateY(-4px); }
+        .cat-card img { width: 100%; height: 100%; object-fit: cover; }
+        .cat-card-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(transparent 40%, rgba(0,0,0,0.7));
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem;
+            color: #fff;
+        }
+        .cat-card-overlay h4 { font-size: 1.15rem; font-weight: 700; }
+        .cat-card-overlay p { font-size: 0.82rem; opacity: 0.85; }
+
+        .b2c-cta-box {
+            background: var(--bg-warm); border-radius: var(--radius-lg); padding: 3rem;
+            text-align: center; border: 1px solid rgba(245,158,11,0.15);
+        }
+        .b2c-cta-box h3 { font-size: 1.6rem; font-weight: 800; color: var(--navy); margin-bottom: 0.6rem; }
+        .b2c-cta-box p { color: var(--text-light); margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+        /* ═══ B2B SECTION ═══ */
+        .b2b-section { padding: 5rem 2rem; background: var(--navy); color: #fff; }
+        .b2b-inner { max-width: 1240px; margin: 0 auto; }
+        .b2b-header { text-align: center; margin-bottom: 4rem; }
+        .b2b-header .label { font-size: 0.78rem; font-weight: 700; color: var(--emerald); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.8rem; }
+        .b2b-header h2 { font-size: 2.6rem; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 1rem; }
+        .b2b-header p { font-size: 1.08rem; opacity: 0.6; max-width: 600px; margin: 0 auto; }
+
+        .b2b-hero-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+            align-items: center; margin-bottom: 4rem;
+        }
+        .b2b-hero-text h3 { font-size: 2rem; font-weight: 800; line-height: 1.2; margin-bottom: 1.2rem; }
+        .b2b-hero-text p { font-size: 1rem; opacity: 0.7; line-height: 1.7; margin-bottom: 1.5rem; }
+        .b2b-hero-benefits { list-style: none; margin-bottom: 2rem; }
+        .b2b-hero-benefits li {
+            display: flex; align-items: center; gap: 0.6rem;
+            font-size: 0.95rem; padding: 0.5rem 0; opacity: 0.85;
+        }
+        .b2b-hero-benefits li svg { width: 20px; height: 20px; stroke: var(--emerald); flex-shrink: 0; }
+        .b2b-hero-img img { width: 100%; border-radius: var(--radius-lg); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+
+        .b2b-sectors { margin-bottom: 4rem; }
+        .b2b-sectors-title { text-align: center; font-size: 1.1rem; font-weight: 600; opacity: 0.5; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 0.08em; }
+        .sectors-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1rem; }
+        .sector-card {
+            border-radius: var(--radius); overflow: hidden; text-align: center;
+            transition: transform 0.3s; cursor: pointer;
+        }
+        .sector-card:hover { transform: translateY(-4px); }
+        .sector-card img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+        .sector-card span {
+            display: block; padding: 0.8rem 0.5rem; font-size: 0.82rem;
+            font-weight: 600; color: rgba(255,255,255,0.8);
+        }
+
+        .b2b-stats-row {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+        .b2b-stat {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius); padding: 2rem; text-align: center;
+        }
+        .b2b-stat .num {
+            font-size: 2.8rem; font-weight: 900;
+            background: linear-gradient(135deg, #fff, var(--emerald));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .b2b-stat .desc { font-size: 0.85rem; opacity: 0.5; margin-top: 0.3rem; }
+
+        .b2b-testimonial {
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-lg); padding: 3rem; display: grid;
+            grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin-bottom: 4rem;
+        }
+        .b2b-test-card { padding: 1.5rem; }
+        .b2b-test-card .quote {
+            font-size: 0.95rem; line-height: 1.7; opacity: 0.8;
+            font-style: italic; margin-bottom: 1.2rem;
+            position: relative; padding-left: 1.5rem;
+        }
+        .b2b-test-card .quote::before {
+            content: '\201C'; position: absolute; left: 0; top: -0.3rem;
+            font-size: 2rem; color: var(--emerald); font-style: normal;
+        }
+        .b2b-test-card .author { font-size: 0.82rem; font-weight: 600; }
+        .b2b-test-card .role { font-size: 0.78rem; opacity: 0.5; }
+
+        .b2b-cta-box {
+            background: linear-gradient(135deg, var(--emerald), var(--emerald-dark));
+            border-radius: var(--radius-lg); padding: 3.5rem; text-align: center;
+        }
+        .b2b-cta-box h3 { font-size: 2rem; font-weight: 900; margin-bottom: 0.8rem; }
+        .b2b-cta-box p { font-size: 1.05rem; opacity: 0.85; max-width: 500px; margin: 0 auto 1.5rem; }
+
+        /* ═══ TEAM ═══ */
+        .team-section { padding: 5rem 2rem; background: var(--bg-light); }
+        .team-inner { max-width: 1240px; margin: 0 auto; }
+        .team-header { text-align: center; margin-bottom: 3rem; }
+        .team-header .label { font-size: 0.78rem; font-weight: 700; color: var(--indigo); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.8rem; }
+        .team-header h2 { font-size: 2.2rem; font-weight: 900; color: var(--navy); letter-spacing: -0.03em; }
+        .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+        .team-card {
+            background: #fff; border-radius: var(--radius); overflow: hidden;
+            border: 1px solid var(--border); transition: all 0.3s; text-align: center;
+        }
+        .team-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+        .team-card-img {
+            aspect-ratio: 1; overflow: hidden;
+        }
+        .team-card-img img { width: 100%; height: 100%; object-fit: cover; }
+        .team-card-info { padding: 1.5rem; }
+        .team-card-info h4 { font-size: 1rem; font-weight: 700; color: var(--navy); }
+        .team-card-info .role { font-size: 0.8rem; color: var(--indigo); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 0.2rem; }
+        .team-card-info p { font-size: 0.82rem; color: var(--text-light); margin-top: 0.6rem; }
+
+        /* ═══ CONTACT ═══ */
+        .contact-section { padding: 5rem 2rem; background: var(--bg); }
+        .contact-inner { max-width: 1240px; margin: 0 auto; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .contact-left h2 { font-size: 2.2rem; font-weight: 900; color: var(--navy); letter-spacing: -0.02em; margin-bottom: 1rem; }
+        .contact-left p { font-size: 1rem; color: var(--text-light); line-height: 1.7; margin-bottom: 2rem; }
+        .contact-item { display: flex; gap: 0.8rem; align-items: center; margin-bottom: 1rem; }
+        .contact-icon {
+            width: 40px; height: 40px; border-radius: 10px; background: var(--bg-light);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .contact-icon svg { width: 18px; height: 18px; stroke: var(--indigo); }
+        .contact-detail .lbl { font-size: 0.72rem; color: var(--text-lighter); text-transform: uppercase; letter-spacing: 0.06em; }
+        .contact-detail .val { font-size: 0.92rem; font-weight: 600; color: var(--navy); }
+        .trust-badges { display: flex; gap: 0.8rem; margin-top: 2rem; flex-wrap: wrap; }
+        .trust-badge {
+            display: flex; align-items: center; gap: 0.4rem;
+            background: var(--bg-light); border: 1px solid var(--border);
+            padding: 0.4rem 0.9rem; border-radius: 8px;
+            font-size: 0.75rem; font-weight: 600; color: var(--navy);
+        }
+        .trust-badge svg { width: 14px; height: 14px; stroke: var(--emerald); }
+        .contact-form {
+            background: var(--bg-light); border-radius: var(--radius-lg); padding: 2.5rem;
+            border: 1px solid var(--border);
+        }
+        .contact-form h3 { font-size: 1.2rem; font-weight: 700; color: var(--navy); margin-bottom: 1.5rem; }
+        .field { margin-bottom: 1rem; }
+        .field label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text); margin-bottom: 0.3rem; }
+        .field input, .field textarea, .field select {
+            width: 100%; padding: 0.7rem 1rem; border: 1px solid var(--border);
+            border-radius: 10px; font-family: inherit; font-size: 0.9rem;
+            background: #fff; transition: border-color 0.2s;
+        }
+        .field input:focus, .field textarea:focus, .field select:focus { outline: none; border-color: var(--indigo); }
+        .field textarea { height: 100px; resize: vertical; }
+        .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .field-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .field-tab {
+            padding: 0.5rem 1rem; border: 1.5px solid var(--border); border-radius: 8px;
+            font-size: 0.82rem; font-weight: 500; cursor: pointer; transition: all 0.2s;
+            background: #fff; color: var(--text-light);
+        }
+        .field-tab.active, .field-tab:hover { border-color: var(--indigo); color: var(--indigo); background: rgba(99,102,241,0.04); }
+
+        /* ═══ FOOTER ═══ */
+        footer { background: var(--navy); color: #fff; padding: 4rem 2rem 2rem; }
+        .footer-inner { max-width: 1240px; margin: 0 auto; }
+        .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .footer-brand p { font-size: 0.85rem; opacity: 0.5; line-height: 1.7; margin-top: 1rem; max-width: 300px; }
+        .footer-col h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.4; margin-bottom: 1rem; }
+        .footer-col a { display: block; color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.85rem; padding: 0.25rem 0; transition: color 0.2s; }
+        .footer-col a:hover { color: #fff; }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 1.5rem; font-size: 0.78rem; opacity: 0.35; }
+
+        /* ═══ ANIMATIONS ═══ */
+        .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        /* ═══ RESPONSIVE ═══ */
+        @media (max-width: 1024px) {
+            .hero-inner, .b2b-hero-grid, .contact-grid, .about-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.8rem; }
+            .hero-visual { display: none; }
+            .b2b-hero-img { display: none; }
+            .services-grid, .how-steps, .b2c-categories { grid-template-columns: repeat(2, 1fr); }
+            .sectors-grid { grid-template-columns: repeat(3, 1fr); }
+            .b2b-stats-row { grid-template-columns: repeat(2, 1fr); }
+            .b2b-testimonial { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-top { grid-template-columns: 1fr 1fr; }
+            .benefit-banner { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-cta-group { display: none; }
+            .mobile-btn { display: block; }
+            .hero { padding: 7rem 1.5rem 3rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .how-steps, .b2c-categories { grid-template-columns: 1fr; }
+            .sectors-grid { grid-template-columns: repeat(2, 1fr); }
+            .b2b-stats-row { grid-template-columns: 1fr 1fr; }
+            .team-grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
+            .footer-top { grid-template-columns: 1fr; }
+            .b2c-header h2, .b2b-header h2, .contact-left h2 { font-size: 1.8rem; }
+            .benefit-banner { padding: 2rem; }
+            .benefit-stats { grid-template-columns: 1fr; }
+            .audience-switch { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="#" class="logo">
+            <div class="logo-mark">
+                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <span class="logo-name">Broker<span>Brain</span></span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#clienti">Per i Clienti</a></li>
+            <li><a href="#partner">Per i Partner</a></li>
+            <div class="nav-sep"></div>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#contatti">Contatti</a></li>
+        </ul>
+        <div class="nav-cta-group">
+            <a href="#clienti" class="btn btn-ghost">Scopri come funziona</a>
+            <a href="#contatti" class="btn btn-primary">Diventa Partner</a>
+        </div>
+        <button class="mobile-btn" id="mobileBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-content">
+            <div class="hero-eyebrow"><span class="dot"></span> Attivo su oltre 500 punti vendita in Italia</div>
+            <h1>Paga a rate ciò che <em>conta davvero</em></h1>
+            <p class="hero-sub">Broker-Brain rende il credito accessibile a tutti. Per i clienti, finanziamenti istantanei senza stress. Per i partner, più vendite e clienti soddisfatti. Tutto potenziato dall'intelligenza artificiale.</p>
+            <div class="hero-ctas">
+                <a href="#clienti" class="btn btn-primary btn-xl">Scopri le soluzioni
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#partner" class="btn btn-outline btn-xl">Sei un'azienda?</a>
+            </div>
+            <div class="hero-proof">
+                <div class="hero-proof-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span><strong>9 su 10</strong> clienti approvati</span>
+                </div>
+                <div class="hero-proof-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <span>Risposta in <strong>30 secondi</strong></span>
+                </div>
+                <div class="hero-proof-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <span><strong>Zero</strong> costi nascosti</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual fade-up">
+            <img src="img/hero-b2c.jpg" alt="Broker-Brain App - Finanziamento istantaneo">
+        </div>
+    </div>
+</section>
+
+<!-- ═══ AUDIENCE SWITCH ═══ -->
+<div class="audience-switch" id="audienceSwitch">
+    <button class="switch-btn active" data-target="clienti" onclick="switchTo('clienti')">Sono un Cliente</button>
+    <button class="switch-btn" data-target="partner" onclick="switchTo('partner')">Sono un Partner / Azienda</button>
+</div>
+
+<!-- ═══ B2C — PER I CLIENTI ═══ -->
+<section class="b2c-section" id="clienti">
+    <div class="b2c-inner">
+
+        <div class="b2c-header fade-up">
+            <div class="label">Per i Clienti</div>
+            <h2>Il finanziamento che si adatta a te</h2>
+            <p>Accedi a rate flessibili per le spese che contano: dalla cura dei denti alla riparazione dell'auto, dall'ottica alle cure veterinarie.</p>
+        </div>
+
+        <!-- Benefit banner -->
+        <div class="benefit-banner fade-up">
+            <div>
+                <h3>Non rinunciare a ciò che ti serve. Paga come vuoi tu.</h3>
+                <p>Con Broker-Brain, la tua richiesta viene valutata in 30 secondi dall'intelligenza artificiale. Nessun documento cartaceo, nessuna attesa: scegli la rata che preferisci e parti.</p>
+            </div>
+            <div class="benefit-stats">
+                <div class="benefit-stat"><div class="num">9/10</div><div class="desc">Clienti approvati</div></div>
+                <div class="benefit-stat"><div class="num">30s</div><div class="desc">Tempo di risposta</div></div>
+                <div class="benefit-stat"><div class="num">0€</div><div class="desc">Costi nascosti</div></div>
+                <div class="benefit-stat"><div class="num">3-72</div><div class="desc">Mesi di rateizzazione</div></div>
+            </div>
+        </div>
+
+        <!-- How it works -->
+        <div class="b2c-header fade-up" style="margin-bottom:2.5rem">
+            <h2 style="font-size:1.8rem">Come funziona</h2>
+        </div>
+        <div class="how-steps fade-up">
+            <div class="how-step">
+                <img src="img/step-1.jpg" alt="Step 1">
+                <h4>Richiedi in 30 secondi</h4>
+                <p>Compila la richiesta dal tuo telefono o direttamente in negozio. Nessun documento, bastano pochi dati.</p>
+            </div>
+            <div class="how-step">
+                <img src="img/step-2.jpg" alt="Step 2">
+                <h4>Approvazione immediata</h4>
+                <p>La nostra AI analizza la tua richiesta istantaneamente. 9 clienti su 10 vengono approvati senza intoppi.</p>
+            </div>
+            <div class="how-step">
+                <img src="img/step-3.jpg" alt="Step 3">
+                <h4>Scegli la tua rata</h4>
+                <p>Seleziona il piano che preferisci, da 3 a 72 mesi. Paghi rate fisse e trasparenti, senza sorprese.</p>
+            </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="b2c-header fade-up" style="margin-bottom:2rem">
+            <h2 style="font-size:1.8rem">Per cosa puoi usarlo</h2>
+        </div>
+        <div class="b2c-categories fade-up">
+            <div class="cat-card">
+                <img src="img/sector-dental.jpg" alt="Cure dentali">
+                <div class="cat-card-overlay"><h4>Cure Dentali</h4><p>Impianti, ortodonzia, igiene</p></div>
+            </div>
+            <div class="cat-card">
+                <img src="img/sector-auto.jpg" alt="Riparazione auto">
+                <div class="cat-card-overlay"><h4>Riparazione Auto</h4><p>Tagliando, pneumatici, carrozzeria</p></div>
+            </div>
+            <div class="cat-card">
+                <img src="img/sector-optical.jpg" alt="Ottica">
+                <div class="cat-card-overlay"><h4>Ottica e Vista</h4><p>Occhiali, lenti, visite</p></div>
+            </div>
+            <div class="cat-card">
+                <img src="img/sector-vet.jpg" alt="Veterinario">
+                <div class="cat-card-overlay"><h4>Cure Veterinarie</h4><p>Interventi, controlli, terapie</p></div>
+            </div>
+            <div class="cat-card">
+                <img src="img/sector-health.jpg" alt="Salute">
+                <div class="cat-card-overlay"><h4>Salute e Benessere</h4><p>Visite specialistiche, trattamenti</p></div>
+            </div>
+            <div class="cat-card">
+                <img src="img/sector-home.jpg" alt="Casa">
+                <div class="cat-card-overlay"><h4>Casa e Servizi</h4><p>Ristrutturazioni, impianti, arredo</p></div>
+            </div>
+        </div>
+
+        <!-- CTA Box -->
+        <div class="b2c-cta-box fade-up">
+            <h3>Hai una spesa imprevista? Non aspettare.</h3>
+            <p>Scopri in 30 secondi se puoi rateizzarla, direttamente dal tuo smartphone.</p>
+            <a href="#contatti" class="btn btn-primary btn-lg">Verifica la tua idoneità
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- ═══ B2B — PER I PARTNER ═══ -->
+<section class="b2b-section" id="partner">
+    <div class="b2b-inner">
+
+        <div class="b2b-header fade-up">
+            <div class="label">Per i Partner</div>
+            <h2>Offri il pagamento a rate ai tuoi clienti. Incassi subito.</h2>
+            <p>Integra Broker-Brain nel tuo punto vendita e trasforma ogni preventivo in una vendita chiusa.</p>
+        </div>
+
+        <!-- B2B Hero -->
+        <div class="b2b-hero-grid fade-up">
+            <div class="b2b-hero-text">
+                <h3>Più vendite. Meno preventivi rifiutati. Zero rischio per te.</h3>
+                <p>Quando un cliente riceve un preventivo alto, la reazione è spesso "ci devo pensare". Con Broker-Brain, trasformi quel momento in un "sì" immediato offrendo rate accessibili.</p>
+                <ul class="b2b-hero-benefits">
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Incasso garantito entro 48 ore</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Nessun rischio di insolvenza — lo gestiamo noi</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Integrazione in 24 ore, senza sviluppo IT</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Dashboard per monitorare ogni transazione</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Compliance OAM e Banca d'Italia integrata</li>
+                </ul>
+                <div style="display:flex;gap:0.8rem;flex-wrap:wrap">
+                    <a href="#contatti" class="btn btn-emerald btn-lg">Diventa Partner
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="#contatti" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,0.2)">Richiedi una demo</a>
+                </div>
+            </div>
+            <div class="b2b-hero-img">
+                <img src="img/hero-b2b.jpg" alt="Broker-Brain Partner Dashboard">
+            </div>
+        </div>
+
+        <!-- Sectors -->
+        <div class="b2b-sectors fade-up">
+            <div class="b2b-sectors-title">Settori che serviamo</div>
+            <div class="sectors-grid">
+                <div class="sector-card"><img src="img/sector-auto.jpg" alt="Automotive"><span>Automotive</span></div>
+                <div class="sector-card"><img src="img/sector-dental.jpg" alt="Dentale"><span>Dentale</span></div>
+                <div class="sector-card"><img src="img/sector-optical.jpg" alt="Ottica"><span>Ottica</span></div>
+                <div class="sector-card"><img src="img/sector-vet.jpg" alt="Veterinario"><span>Veterinario</span></div>
+                <div class="sector-card"><img src="img/sector-health.jpg" alt="Salute"><span>Salute</span></div>
+                <div class="sector-card"><img src="img/sector-home.jpg" alt="Casa"><span>Casa & Servizi</span></div>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="b2b-stats-row fade-up">
+            <div class="b2b-stat"><div class="num" data-target="500">0</div><div class="desc">Partner attivi</div></div>
+            <div class="b2b-stat"><div class="num" data-target="25000">0</div><div class="desc">Pratiche erogate</div></div>
+            <div class="b2b-stat"><div class="num" data-target="40">0</div><div class="desc">% Aumento vendite medio</div></div>
+            <div class="b2b-stat"><div class="num" data-target="48">0</div><div class="desc">Ore per incassare</div></div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="b2b-testimonial fade-up">
+            <div class="b2b-test-card">
+                <div class="quote">Da quando offriamo le rate con Broker-Brain, il 60% dei preventivi sopra i 1.000€ viene accettato. Prima era meno del 30%.</div>
+                <div class="author">Dr. Paolo Ferrara</div>
+                <div class="role">Titolare, Studio Dentistico Ferrara — Roma</div>
+            </div>
+            <div class="b2b-test-card">
+                <div class="quote">L'integrazione è stata immediata. I nostri clienti apprezzano la possibilità di rateizzare gli interventi. Noi incassiamo subito: è perfetto.</div>
+                <div class="author">Marco Betti</div>
+                <div class="role">Direttore, AutoService Betti — Milano</div>
+            </div>
+            <div class="b2b-test-card">
+                <div class="quote">Broker-Brain ci ha permesso di aumentare lo scontrino medio del 35%. I proprietari dei pet non devono più rinunciare alle cure per i loro amici.</div>
+                <div class="author">Dr.ssa Elena Conti</div>
+                <div class="role">Veterinaria, Clinica ZampaFelice — Firenze</div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="b2b-cta-box fade-up">
+            <h3>Il tuo prossimo cliente è pronto a comprare. Dagli il modo di farlo.</h3>
+            <p>Attiva Broker-Brain nel tuo punto vendita in 24 ore. Nessun costo di setup, nessun rischio.</p>
+            <a href="#contatti" class="btn btn-dark btn-xl">Attiva Broker-Brain gratis
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- ═══ TEAM ═══ -->
+<section class="team-section" id="team">
+    <div class="team-inner">
+        <div class="team-header fade-up">
+            <div class="label">Il nostro team</div>
+            <h2>Le persone dietro la tecnologia</h2>
+        </div>
+        <div class="team-grid fade-up">
+            <div class="team-card">
+                <div class="team-card-img"><img src="img/team-ceo.jpg" alt="Marco Martellacci"></div>
+                <div class="team-card-info">
+                    <h4>Marco Martellacci</h4>
+                    <div class="role">CEO & Founder</div>
+                    <p>15+ anni nel settore della mediazione creditizia e dei servizi finanziari.</p>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-card-img"><img src="img/team-cto.jpg" alt="Laura Rossi"></div>
+                <div class="team-card-info">
+                    <h4>Laura Rossi</h4>
+                    <div class="role">CTO</div>
+                    <p>PhD in Machine Learning. Architetta delle soluzioni AI alla base della piattaforma.</p>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-card-img"><img src="img/team-product.jpg" alt="Alessandro Bianchi"></div>
+                <div class="team-card-info">
+                    <h4>Alessandro Bianchi</h4>
+                    <div class="role">Head of Product</div>
+                    <p>Ex consulente in digital transformation per il settore bancario.</p>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-card-img"><img src="img/team-compliance.jpg" alt="Giulia Ferretti"></div>
+                <div class="team-card-info">
+                    <h4>Giulia Ferretti</h4>
+                    <div class="role">Head of Compliance</div>
+                    <p>Esperta in regolamentazione OAM, antiriciclaggio e normativa bancaria.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ CONTATTI ═══ -->
+<section class="contact-section" id="contatti">
+    <div class="contact-inner">
+        <div class="contact-grid">
+            <div class="contact-left fade-up">
+                <h2>Parliamone. Senza impegno.</h2>
+                <p>Che tu sia un cliente alla ricerca di un finanziamento o un'azienda che vuole offrire il pagamento a rate, siamo qui per te.</p>
+                <div class="contact-item">
+                    <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+                    <div class="contact-detail"><div class="lbl">Email</div><div class="val">info@broker-brain.com</div></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                    <div class="contact-detail"><div class="lbl">Telefono</div><div class="val">+39 02 1234 5678</div></div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                    <div class="contact-detail"><div class="lbl">Sede</div><div class="val">Milano, Italia</div></div>
+                </div>
+                <div class="trust-badges">
+                    <div class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Iscritti OAM</div>
+                    <div class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> GDPR Compliant</div>
+                    <div class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Banca d'Italia</div>
+                    <div class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Risposta 24h</div>
+                </div>
+            </div>
+            <form class="contact-form fade-up" onsubmit="handleSubmit(event)">
+                <h3>Scrivici</h3>
+                <div class="field">
+                    <label>Sono un...</label>
+                    <div class="field-tabs">
+                        <span class="field-tab active" onclick="selectTab(this)">Cliente privato</span>
+                        <span class="field-tab" onclick="selectTab(this)">Azienda / Partner</span>
+                        <span class="field-tab" onclick="selectTab(this)">Rivenditore auto</span>
+                        <span class="field-tab" onclick="selectTab(this)">Studio dentistico</span>
+                    </div>
+                </div>
+                <div class="field-row">
+                    <div class="field"><label>Nome</label><input type="text" placeholder="Il tuo nome" required></div>
+                    <div class="field"><label>Cognome</label><input type="text" placeholder="Il tuo cognome" required></div>
+                </div>
+                <div class="field"><label>Email</label><input type="email" placeholder="nome@email.it" required></div>
+                <div class="field"><label>Telefono</label><input type="tel" placeholder="+39 ..."></div>
+                <div class="field"><label>Messaggio</label><textarea placeholder="Come possiamo aiutarti?"></textarea></div>
+                <button type="submit" class="btn btn-primary btn-lg" style="width:100%">Invia richiesta</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <div class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+                    <span class="logo-name" style="color:#fff">Broker<span>Brain</span></span>
+                </a>
+                <p>Finanziamenti accessibili per ciò che conta. Tecnologia AI al servizio di clienti e partner.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Per i Clienti</h4>
+                <a href="#clienti">Come funziona</a>
+                <a href="#clienti">Settori</a>
+                <a href="#contatti">Verifica idoneità</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="footer-col">
+                <h4>Per i Partner</h4>
+                <a href="#partner">Vantaggi</a>
+                <a href="#partner">Settori</a>
+                <a href="#contatti">Diventa partner</a>
+                <a href="#team">Team</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legale</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Termini di Servizio</a>
+                <a href="#">Cookie Policy</a>
+                <a href="#">Informativa OAM</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 Broker-Brain S.r.l. — Tutti i diritti riservati</span>
+            <span>P.IVA 00000000000 — Iscrizione OAM n. M00000</span>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Nav scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+
+    // Scroll animations
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+    // Counter animation
+    const counterObs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            const target = parseInt(el.dataset.target);
+            const duration = 2000; const start = performance.now();
+            const animate = now => {
+                const p = Math.min((now - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - p, 3);
+                el.textContent = Math.floor(eased * target).toLocaleString('it-IT') + (target < 100 ? '%' : '+');
+                if (p < 1) requestAnimationFrame(animate);
+            };
+            requestAnimationFrame(animate);
+            counterObs.unobserve(el);
+        });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('[data-target]').forEach(el => counterObs.observe(el));
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            e.preventDefault();
+            const t = document.querySelector(a.getAttribute('href'));
+            if (t) window.scrollTo({ top: t.offsetTop - 80, behavior: 'smooth' });
+        });
+    });
+
+    // Audience switch
+    function switchTo(target) {
+        document.querySelectorAll('.switch-btn').forEach(b => b.classList.toggle('active', b.dataset.target === target));
+        const el = document.getElementById(target);
+        if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
+    }
+
+    // Form tabs
+    function selectTab(el) {
+        el.parentNode.querySelectorAll('.field-tab').forEach(t => t.classList.remove('active'));
+        el.classList.add('active');
+    }
+
+    // Form submit
+    function handleSubmit(e) {
+        e.preventDefault();
+        const btn = e.target.querySelector('button[type="submit"]');
+        btn.textContent = 'Richiesta inviata!'; btn.style.background = '#10B981';
+        setTimeout(() => { btn.textContent = 'Invia richiesta'; btn.style.background = ''; e.target.reset(); }, 3000);
+    }
+</script>
+
+</body>
+</html>
