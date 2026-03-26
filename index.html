@@ -3,326 +3,280 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>brokerbrain | Il prestito intelligente, alla velocità del pensiero.</title>
+    <title>brokerbrain | Diventa Partner — Porta il Credito al Consumo nel Tuo Business</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --teal: #06AED5;
-            --teal-dark: #086788;
-            --teal-light: #39C4E5;
-            --orange: #F0C808;
-            --orange-dark: #DD1C1A;
-            --red: #DD1C1A;
-            --navy: #086788;
-            --text: #086788;
-            --text-light: #3A6A7A;
-            --text-lighter: #7AA0B0;
-            --bg: #FFFFFF;
-            --bg-light: #FFF1D0;
-            --bg-teal: #E0F6FB;
-            --border: #C8E4EE;
-            --shadow-sm: 0 1px 4px rgba(8,103,136,0.06);
-            --shadow: 0 4px 24px rgba(8,103,136,0.09);
-            --shadow-lg: 0 12px 48px rgba(8,103,136,0.13);
-            --radius: 16px;
-            --radius-lg: 24px;
-            --pill: 100px;
+            --yellow:       #F5C400;
+            --yellow-hover: #D9AF00;
+            --yellow-pale:  #FFFBEB;
+            --dark:         #111827;
+            --dark-2:       #1F2937;
+            --dark-3:       #374151;
+            --text:         #374151;
+            --text-muted:   #9CA3AF;
+            --bg:           #FFFFFF;
+            --bg-light:     #F9FAFB;
+            --bg-section:   #F3F4F6;
+            --border:       #E5E7EB;
+            --border-dark:  #D1D5DB;
+            --shadow-sm:    0 1px 2px rgba(0,0,0,0.05);
+            --shadow:       0 1px 3px rgba(0,0,0,0.07), 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-md:    0 4px 16px rgba(0,0,0,0.08);
+            --shadow-lg:    0 8px 32px rgba(0,0,0,0.10);
+            --radius:       12px;
+            --radius-lg:    20px;
+            --pill:         100px;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Montserrat', sans-serif; color: var(--text); line-height: 1.6; background: var(--bg); overflow-x: hidden; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background: var(--bg);
+            overflow-x: hidden;
+        }
 
         /* NAV */
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            background: rgba(255,255,255,0.96); backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border); transition: box-shadow 0.3s;
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            transition: box-shadow 0.25s;
         }
-        nav.scrolled { box-shadow: var(--shadow); }
+        nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,0.06); }
         .nav-inner {
             max-width: 1240px; margin: 0 auto; padding: 0 2rem;
-            display: flex; align-items: center; justify-content: space-between; height: 72px;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 70px;
         }
-        .logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
-        .logo-mark { width: 32px; height: 32px; }
+        .logo { display: flex; align-items: center; gap: 0.55rem; text-decoration: none; }
+        .logo-mark { width: 30px; height: 30px; }
         .logo-mark img { width: 100%; height: 100%; display: block; }
-        .logo-name { font-size: 1.25rem; font-weight: 900; color: var(--navy); letter-spacing: -0.03em; }
-        .nav-links { display: flex; align-items: center; gap: 0.2rem; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--text-light); font-size: 0.88rem; font-weight: 600; padding: 0.5rem 0.9rem; border-radius: 8px; transition: all 0.2s; }
-        .nav-links a:hover { color: var(--navy); background: var(--bg-light); }
-        .nav-sep { display: inline-block; width: 1px; height: 18px; background: var(--border); margin: 0 0.4rem; vertical-align: middle; }
-        .nav-cta-group { display: flex; gap: 0.6rem; }
+        .logo-name { font-size: 1.2rem; font-weight: 900; color: var(--dark); letter-spacing: -0.04em; }
+        .logo-name span { color: var(--yellow); }
+        .nav-links { display: flex; align-items: center; gap: 0; list-style: none; }
+        .nav-links a {
+            text-decoration: none; color: var(--text); font-size: 0.875rem;
+            font-weight: 600; padding: 0.5rem 1rem; border-radius: 8px;
+            transition: color 0.15s, background 0.15s;
+        }
+        .nav-links a:hover { color: var(--dark); background: var(--bg-section); }
+        .nav-sep { display: inline-block; width: 1px; height: 16px; background: var(--border); margin: 0 0.5rem; vertical-align: middle; }
+        .nav-cta-group { display: flex; gap: 0.6rem; align-items: center; }
         .mobile-btn { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
-        .mobile-btn span { display: block; width: 22px; height: 2px; background: var(--navy); margin: 5px 0; border-radius: 2px; }
+        .mobile-btn span { display: block; width: 22px; height: 2px; background: var(--dark); margin: 5px 0; border-radius: 2px; }
 
         /* BUTTONS */
         .btn {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.88rem;
-            padding: 0.65rem 1.5rem; border-radius: var(--pill);
-            text-decoration: none; transition: all 0.22s; cursor: pointer; border: none;
-        }
-        .btn-primary { background: var(--orange); color: #fff; text-transform: uppercase; letter-spacing: 0.05em; }
-        .btn-primary:hover { background: var(--orange-dark); transform: translateY(-2px); box-shadow: 0 6px 22px rgba(240,200,8,0.38); }
-        .btn-teal { background: var(--teal); color: #fff; }
-        .btn-teal:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 6px 22px rgba(6,174,213,0.32); }
-        .btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--border); }
-        .btn-outline:hover { border-color: var(--navy); }
-        .btn-outline-white { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.35); }
-        .btn-outline-white:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
-        .btn-lg { padding: 0.9rem 2.2rem; font-size: 0.95rem; }
-        .btn-xl { padding: 1.05rem 2.5rem; font-size: 1rem; }
-
-        /* ARROW LINKS */
-        .link-arr {
             display: inline-flex; align-items: center; gap: 0.45rem;
-            font-size: 0.88rem; font-weight: 700; color: var(--teal);
-            text-decoration: none; transition: gap 0.2s, color 0.2s;
+            font-family: 'Montserrat', sans-serif; font-weight: 700;
+            font-size: 0.875rem; padding: 0.65rem 1.5rem;
+            border-radius: var(--pill); text-decoration: none;
+            transition: all 0.18s; cursor: pointer; border: none;
+            white-space: nowrap;
         }
-        .link-arr:hover { gap: 0.75rem; color: var(--teal-dark); }
-        .link-arr svg { width: 16px; height: 16px; transition: transform 0.2s; flex-shrink: 0; }
-        .link-arr:hover svg { transform: translateX(3px); }
+        .btn-primary { background: var(--yellow); color: var(--dark); letter-spacing: -0.01em; }
+        .btn-primary:hover { background: var(--yellow-hover); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(245,196,0,0.35); }
+        .btn-dark { background: var(--dark); color: #fff; }
+        .btn-dark:hover { background: var(--dark-2); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,0.22); }
+        .btn-outline { background: transparent; color: var(--dark); border: 1.5px solid var(--border-dark); }
+        .btn-outline:hover { border-color: var(--dark); background: var(--bg-section); }
+        .btn-outline-white { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.3); }
+        .btn-outline-white:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+        .btn-lg { padding: 0.85rem 2rem; font-size: 0.9rem; }
+        .btn-xl { padding: 1rem 2.4rem; font-size: 0.95rem; }
 
-        /* LABEL */
-        .label { display: inline-block; font-size: 0.72rem; font-weight: 800; color: var(--teal); text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 0.9rem; }
-
-        /* SECTION WRAPPERS */
+        /* UTILS */
+        .label { display: inline-block; font-size: 0.7rem; font-weight: 800; color: var(--yellow); text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 0.8rem; }
         .inner { max-width: 1240px; margin: 0 auto; }
         .sec-head { margin-bottom: 3.5rem; }
         .sec-head.c { text-align: center; }
-        .sec-head.c p { max-width: 560px; margin-left: auto; margin-right: auto; }
-        .sec-head h2 { font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 900; color: var(--navy); letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 0.8rem; }
-        .sec-head p { font-size: 1.05rem; color: var(--text-light); line-height: 1.75; }
+        .sec-head.c p { max-width: 580px; margin-left: auto; margin-right: auto; }
+        .sec-head h2 { font-size: clamp(1.9rem, 3.2vw, 2.8rem); font-weight: 900; color: var(--dark); letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 0.75rem; }
+        .sec-head p { font-size: 1rem; color: var(--text-muted); line-height: 1.8; }
+        .link-arr { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.875rem; font-weight: 700; color: var(--dark); text-decoration: none; transition: gap 0.15s; }
+        .link-arr:hover { gap: 0.65rem; }
+        .link-arr svg { width: 15px; height: 15px; flex-shrink: 0; }
+        .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
 
         /* HERO */
-        .hero {
-            min-height: 100vh; padding: 7.5rem 2rem 5rem;
-            position: relative; overflow: hidden; background: #fff;
-            display: flex; align-items: center;
-        }
-        .hero::after {
-            content: ''; position: absolute; top: 0; right: 0;
-            width: 52%; height: 100%; background: var(--bg-teal);
-            clip-path: ellipse(96% 78% at 100% 50%); z-index: 0;
-        }
-        .hero-inner {
-            max-width: 1240px; margin: 0 auto; width: 100%;
-            display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
-            align-items: center; position: relative; z-index: 1;
-        }
-        .hero-eyebrow {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            background: rgba(6,174,213,0.12); color: var(--teal-dark);
-            border: 1px solid rgba(6,174,213,0.25); padding: 0.4rem 1.1rem;
-            border-radius: var(--pill); font-size: 0.76rem; font-weight: 800;
-            letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 2rem;
-        }
-        .hero-eyebrow .dot { width: 7px; height: 7px; background: var(--teal); border-radius: 50%; animation: blink 2s infinite; }
-        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.25} }
-        .hero h1 { font-size: clamp(3rem, 5.5vw, 5.5rem); font-weight: 900; color: var(--navy); line-height: 1.0; letter-spacing: -0.045em; margin-bottom: 1.8rem; }
-        .hero h1 em { font-style: normal; color: var(--teal); }
-        .hero-sub { font-size: 1.1rem; color: var(--text-light); line-height: 1.78; margin-bottom: 2.5rem; max-width: 480px; }
-        .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
-        .hero-proof { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
-        .hero-proof-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; color: var(--text-light); }
-        .hero-proof-item svg { width: 16px; height: 16px; stroke: var(--teal); flex-shrink: 0; }
-        .hero-proof-item strong { color: var(--navy); font-weight: 700; }
+        .hero { padding: 8.5rem 2rem 6rem; background: var(--bg); position: relative; overflow: hidden; display: flex; align-items: center; }
+        .hero-inner { max-width: 1240px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+        .hero-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--yellow); color: var(--dark); padding: 0.35rem 1rem; border-radius: var(--pill); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.8rem; }
+        .hero-eyebrow .dot { width: 6px; height: 6px; background: var(--dark); border-radius: 50%; animation: blink 2s infinite; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+        .hero h1 { font-size: clamp(2.8rem, 5vw, 5rem); font-weight: 900; color: var(--dark); line-height: 1.02; letter-spacing: -0.045em; margin-bottom: 1.5rem; }
+        .hero h1 em { font-style: normal; color: var(--yellow); }
+        .hero-sub { font-size: 1.05rem; color: var(--text); line-height: 1.8; margin-bottom: 2.2rem; max-width: 480px; }
+        .hero-ctas { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+        .hero-proof { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+        .hero-proof-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
+        .hero-proof-item svg { width: 15px; height: 15px; stroke: var(--dark); flex-shrink: 0; }
+        .hero-proof-item strong { color: var(--dark); font-weight: 700; }
         .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
-        .hero-img { width: 92%; max-width: 500px; filter: drop-shadow(0 20px 40px rgba(8,103,136,0.08)); }
-        .hero-badge {
-            position: absolute; background: #fff; border-radius: var(--radius);
-            padding: 0.9rem 1.2rem; box-shadow: var(--shadow-lg);
-            display: flex; align-items: center; gap: 0.7rem;
-            animation: floatY 3s ease-in-out infinite;
-        }
-        .hb-1 { top: 10%; right: -2%; animation-delay: 0s; }
-        .hb-2 { bottom: 18%; left: -5%; animation-delay: 1.5s; }
-        .badge-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .hb-1 .badge-icon { background: var(--bg-teal); }
-        .hb-2 .badge-icon { background: #FFF3E0; }
-        .badge-icon svg { width: 20px; height: 20px; }
-        .badge-num { font-size: 1.5rem; font-weight: 900; line-height: 1; color: var(--navy); }
-        .hb-2 .badge-num { color: var(--orange); }
-        .badge-txt { font-size: 0.7rem; font-weight: 600; color: var(--text-lighter); margin-top: 1px; }
-        @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+        .hero-img { width: 90%; max-width: 480px; }
+        .hero-badge { position: absolute; background: #fff; border-radius: var(--radius); padding: 0.85rem 1.1rem; box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 0.65rem; animation: floatY 3.5s ease-in-out infinite; border: 1px solid var(--border); }
+        .hb-1 { top: 8%; right: -4%; animation-delay: 0s; }
+        .hb-2 { bottom: 15%; left: -6%; animation-delay: 1.8s; }
+        .badge-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .hb-1 .badge-icon { background: var(--yellow); }
+        .hb-2 .badge-icon { background: var(--bg-section); }
+        .badge-icon svg { width: 18px; height: 18px; }
+        .badge-num { font-size: 1.4rem; font-weight: 900; line-height: 1; color: var(--dark); letter-spacing: -0.03em; }
+        .badge-txt { font-size: 0.68rem; font-weight: 600; color: var(--text-muted); margin-top: 1px; }
+        @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-9px)} }
 
-        /* AUDIENCE SWITCH */
-        .aud-switch { display: flex; justify-content: center; gap: 0.5rem; padding: 3.5rem 2rem 0; background: var(--bg); }
-        .sw-btn {
-            padding: 0.75rem 2.2rem; border-radius: var(--pill);
-            font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.9rem;
-            cursor: pointer; border: 2px solid var(--border); background: var(--bg); color: var(--text-light); transition: all 0.25s;
-        }
-        .sw-btn.active { background: var(--navy); color: #fff; border-color: var(--navy); }
-        .sw-btn:hover:not(.active) { border-color: var(--navy); color: var(--navy); }
+        /* PROBLEM BAND */
+        .problem-band { padding: 6rem 2rem; background: var(--dark); }
+        .problem-band-inner { max-width: 860px; margin: 0 auto; text-align: center; }
+        .problem-band .label { color: var(--yellow); }
+        .problem-q { font-size: clamp(1.8rem, 3.2vw, 2.8rem); font-weight: 900; color: #fff; letter-spacing: -0.04em; line-height: 1.12; margin-bottom: 1rem; }
+        .problem-q em { font-style: normal; color: var(--yellow); }
+        .problem-sub { font-size: 1.05rem; color: rgba(255,255,255,0.55); line-height: 1.8; margin-bottom: 2.5rem; }
+        .problem-divider { width: 40px; height: 2px; background: var(--yellow); margin: 2.5rem auto; border-radius: 2px; }
+        .problem-sol { font-size: clamp(1.3rem, 2vw, 1.75rem); font-weight: 800; color: #fff; letter-spacing: -0.03em; margin-bottom: 0.9rem; }
+        .problem-sol-sub { font-size: 0.95rem; color: rgba(255,255,255,0.5); line-height: 1.8; max-width: 640px; margin: 0 auto 2.5rem; }
 
-        /* B2C */
-        .b2c { padding: 5rem 2rem 7rem; background: var(--bg); }
-
-        /* HOW-IT-WORKS */
-        .how-wrap { border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; display: grid; grid-template-columns: repeat(3,1fr); margin-bottom: 6rem; }
-        .how-step { padding: 2.5rem 2rem; border-right: 1px solid var(--border); transition: background 0.25s; }
+        /* HOW IT WORKS */
+        .how-section { padding: 7rem 2rem; background: var(--bg); }
+        .how-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+        .how-step { padding: 2.5rem 2.2rem; border-right: 1px solid var(--border); transition: background 0.2s; }
         .how-step:last-child { border-right: none; }
-        .how-step:hover { background: var(--bg-teal); }
-        .how-num { font-size: 3.5rem; font-weight: 900; color: var(--border); line-height: 1; margin-bottom: 1.2rem; letter-spacing: -0.04em; }
-        .how-step img { width: 88px; height: 88px; object-fit: contain; display: block; margin-bottom: 1.2rem; }
-        .how-step h4 { font-size: 1.12rem; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; margin-bottom: 0.5rem; }
-        .how-step p { font-size: 0.86rem; color: var(--text-light); line-height: 1.7; }
+        .how-step:hover { background: var(--bg-light); }
+        .how-num { font-size: 3.5rem; font-weight: 900; color: var(--border); line-height: 1; margin-bottom: 1.5rem; letter-spacing: -0.05em; }
+        .how-step img { width: 72px; height: 72px; object-fit: contain; display: block; margin-bottom: 1.2rem; }
+        .how-step h4 { font-size: 1.05rem; font-weight: 800; color: var(--dark); letter-spacing: -0.025em; margin-bottom: 0.5rem; }
+        .how-step p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.75; }
 
-        /* CAT GRID */
-        .cat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-bottom: 5.5rem; }
-        .cat-card { border-radius: var(--radius-lg); border: 1px solid var(--border); overflow: hidden; transition: all 0.3s; cursor: pointer; background: #fff; }
-        .cat-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: transparent; }
-        .cat-vis { height: 190px; display: flex; align-items: center; justify-content: center; padding: 1.8rem; overflow: hidden; }
-        .cat-vis img { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.35s; }
-        .cat-card:hover .cat-vis img { transform: scale(1.06); }
-        .cat-body { padding: 1.4rem 1.5rem; border-top: 1px solid var(--border); }
-        .cat-body h4 { font-size: 1.02rem; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; margin-bottom: 0.3rem; }
-        .cat-body p { font-size: 0.81rem; color: var(--text-light); margin-bottom: 0.9rem; }
+        /* FEATURE CARDS */
+        .feat-section { padding: 7rem 2rem; background: var(--bg-section); }
+        .feat-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.25rem; }
+        .feat-card { background: #fff; border-radius: var(--radius); padding: 2.2rem; border: 1px solid var(--border); transition: box-shadow 0.2s, transform 0.2s; }
+        .feat-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+        .feat-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--yellow-pale); display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; border: 1px solid rgba(245,196,0,0.25); }
+        .feat-icon svg { width: 22px; height: 22px; stroke: var(--dark); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+        .feat-stat { font-size: 2.4rem; font-weight: 900; color: var(--yellow); letter-spacing: -0.04em; line-height: 1; margin-bottom: 0.25rem; }
+        .feat-card h4 { font-size: 1rem; font-weight: 800; color: var(--dark); letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+        .feat-card p { font-size: 0.83rem; color: var(--text-muted); line-height: 1.75; }
 
-        /* BENEFIT BAND */
-        .bband {
-            background: var(--navy); border-radius: var(--radius-lg); padding: 4rem;
-            display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center;
-        }
-        .bband h3 { font-size: 2.2rem; font-weight: 900; color: #fff; line-height: 1.12; letter-spacing: -0.03em; margin-bottom: 1rem; }
-        .bband > div > p { font-size: 1rem; color: rgba(255,255,255,0.6); line-height: 1.75; margin-bottom: 2rem; }
-        .bstats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
-        .bstat { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 1.5rem; }
-        .bstat .num { font-size: 2.4rem; font-weight: 900; color: var(--teal-light); line-height: 1; }
-        .bstat .desc { font-size: 0.78rem; color: rgba(255,255,255,0.45); margin-top: 0.4rem; }
+        /* BENEFIT BLOCKS */
+        .benefit-section { padding: 7rem 2rem; background: var(--bg); }
+        .benefit-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+        .benefit-block { border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2.5rem; transition: box-shadow 0.2s, transform 0.2s; }
+        .benefit-block:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+        .benefit-num { font-size: 4rem; font-weight: 900; color: var(--yellow); line-height: 1; margin-bottom: 1.2rem; letter-spacing: -0.05em; }
+        .benefit-block h3 { font-size: 1.2rem; font-weight: 800; color: var(--dark); letter-spacing: -0.025em; margin-bottom: 0.75rem; }
+        .benefit-block p { font-size: 0.875rem; color: var(--text); line-height: 1.8; }
 
-        /* B2B */
-        .b2b { padding: 6rem 2rem; background: var(--bg-light); }
-        .b2b-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-bottom: 6rem; }
-        .b2b-text h3 { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 900; color: var(--navy); line-height: 1.15; letter-spacing: -0.035em; margin-bottom: 1.2rem; }
-        .b2b-text > p { font-size: 1rem; color: var(--text-light); line-height: 1.75; margin-bottom: 2rem; }
-        .b2b-list { list-style: none; margin-bottom: 2.5rem; }
-        .b2b-list li { display: flex; align-items: flex-start; gap: 0.8rem; font-size: 0.92rem; padding: 0.65rem 0; border-bottom: 1px solid var(--border); }
-        .b2b-list li:last-child { border-bottom: none; }
-        .chk { width: 20px; height: 20px; border-radius: 50%; background: var(--bg-teal); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
-        .chk svg { width: 10px; height: 10px; stroke: var(--teal); stroke-width: 3; }
-        .b2b-img-wrap { display: flex; justify-content: center; }
-        .b2b-img { width: 100%; max-width: 480px; filter: drop-shadow(0 16px 36px rgba(8,103,136,0.1)); }
-
-        /* STATS ROW */
-        .stats-row { display: grid; grid-template-columns: repeat(4,1fr); background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 5rem; }
-        .stat-cell { padding: 2.5rem 2rem; text-align: center; border-right: 1px solid var(--border); transition: background 0.2s; }
+        /* STATS */
+        .stats-section { padding: 7rem 2rem; background: var(--dark); }
+        .stats-section .sec-head h2 { color: #fff; }
+        .stats-section .sec-head p { color: rgba(255,255,255,0.4); }
+        .stats-section .label { color: var(--yellow); }
+        .stats-row { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); overflow: hidden; }
+        .stat-cell { padding: 2.5rem 2rem; text-align: center; border-right: 1px solid rgba(255,255,255,0.1); transition: background 0.2s; }
         .stat-cell:last-child { border-right: none; }
-        .stat-cell:hover { background: var(--bg-teal); }
-        .stat-cell .n { font-size: 2.8rem; font-weight: 900; color: var(--navy); letter-spacing: -0.04em; line-height: 1; }
-        .stat-cell .n .accent { color: var(--teal); }
-        .stat-cell .d { font-size: 0.78rem; color: var(--text-light); margin-top: 0.5rem; font-weight: 600; }
+        .stat-cell:hover { background: rgba(255,255,255,0.04); }
+        .stat-cell .n { font-size: 3rem; font-weight: 900; color: var(--yellow); letter-spacing: -0.05em; line-height: 1; }
+        .stat-cell .d { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-top: 0.5rem; font-weight: 600; }
 
         /* SECTORS */
-        .sectors-wrap { margin-bottom: 5rem; }
-        .sectors-lbl { font-size: 0.74rem; font-weight: 800; color: var(--text-lighter); text-transform: uppercase; letter-spacing: 0.14em; text-align: center; margin-bottom: 1.5rem; }
+        .sectors-section { padding: 7rem 2rem; background: var(--bg-section); }
         .sectors-grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 1rem; }
-        .sector-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem 0.8rem; text-align: center; transition: all 0.25s; cursor: pointer; }
-        .sector-card:hover { border-color: var(--teal); background: var(--bg-teal); transform: translateY(-3px); }
-        .sector-card img { width: 52px; height: 52px; object-fit: contain; display: block; margin: 0 auto 0.6rem; }
-        .sector-card span { font-size: 0.78rem; font-weight: 700; color: var(--navy); }
+        .sector-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem 0.75rem; text-align: center; transition: all 0.2s; cursor: pointer; }
+        .sector-card:hover { border-color: var(--yellow); box-shadow: var(--shadow); transform: translateY(-2px); }
+        .sector-card img { width: 48px; height: 48px; object-fit: contain; display: block; margin: 0 auto 0.6rem; }
+        .sector-card span { font-size: 0.76rem; font-weight: 700; color: var(--dark); }
 
         /* TESTIMONIALS */
-        .test-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-bottom: 5rem; }
-        .test-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; transition: all 0.3s; }
-        .test-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+        .testimonials-section { padding: 7rem 2rem; background: var(--bg); }
+        .test-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-bottom: 5rem; }
+        .test-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; transition: box-shadow 0.2s, transform 0.2s; }
+        .test-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
         .test-stars { display: flex; gap: 2px; margin-bottom: 1rem; }
-        .test-stars span { font-size: 0.9rem; color: #F0C808; }
-        .test-q { font-size: 0.93rem; line-height: 1.75; color: var(--text); font-style: italic; margin-bottom: 1.5rem; }
-        .test-author { font-size: 0.86rem; font-weight: 700; color: var(--navy); }
-        .test-role { font-size: 0.76rem; color: var(--text-lighter); margin-top: 0.2rem; }
+        .test-stars span { font-size: 0.85rem; color: var(--yellow); }
+        .test-q { font-size: 0.9rem; line-height: 1.8; color: var(--text); font-style: italic; margin-bottom: 1.5rem; }
+        .test-author { font-size: 0.85rem; font-weight: 700; color: var(--dark); }
+        .test-role { font-size: 0.74rem; color: var(--text-muted); margin-top: 0.2rem; }
 
-        /* B2B CTA BOX */
-        .b2b-cta-box { background: linear-gradient(135deg, var(--teal) 0%, var(--navy) 100%); border-radius: var(--radius-lg); padding: 4rem; text-align: center; }
-        .b2b-cta-box h3 { font-size: 2.2rem; font-weight: 900; color: #fff; letter-spacing: -0.03em; margin-bottom: 0.8rem; }
-        .b2b-cta-box p { font-size: 1.05rem; color: rgba(255,255,255,0.72); max-width: 500px; margin: 0 auto 2rem; }
-
-        /* TEAM */
-        .team { padding: 6rem 2rem; background: var(--bg); }
-        .team-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; }
-        .team-card { background: var(--bg-light); border-radius: var(--radius-lg); overflow: hidden; transition: all 0.3s; }
-        .team-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
-        .team-card-img { aspect-ratio: 1; overflow: hidden; background: var(--bg-teal); }
-        .team-card-img img { width: 100%; height: 100%; object-fit: cover; }
-        .team-info { padding: 1.5rem; }
-        .team-info h4 { font-size: 1rem; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; }
-        .team-info .role { font-size: 0.73rem; color: var(--teal-dark); font-weight: 800; text-transform: uppercase; letter-spacing: 0.07em; margin-top: 0.2rem; }
-        .team-info p { font-size: 0.81rem; color: var(--text-light); margin-top: 0.6rem; line-height: 1.6; }
+        /* CTA BOX */
+        .cta-box { background: var(--dark); border-radius: var(--radius-lg); padding: 4rem; text-align: center; }
+        .cta-box h3 { font-size: clamp(1.6rem, 2.8vw, 2.2rem); font-weight: 900; color: #fff; letter-spacing: -0.04em; margin-bottom: 0.75rem; line-height: 1.15; }
+        .cta-box p { font-size: 1rem; color: rgba(255,255,255,0.45); max-width: 480px; margin: 0 auto 2rem; line-height: 1.75; }
 
         /* CONTACT */
-        .contact { padding: 6rem 2rem; background: var(--bg-light); }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; }
-        .contact-left h2 { font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 900; color: var(--navy); letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 1rem; }
-        .contact-left > p { font-size: 1rem; color: var(--text-light); line-height: 1.75; margin-bottom: 2.5rem; }
-        .contact-item { display: flex; gap: 1rem; align-items: center; margin-bottom: 1.2rem; }
-        .contact-icon { width: 44px; height: 44px; border-radius: 12px; background: #fff; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .contact-icon svg { width: 18px; height: 18px; stroke: var(--teal); }
-        .contact-lbl { font-size: 0.68rem; color: var(--text-lighter); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; }
-        .contact-val { font-size: 0.92rem; font-weight: 700; color: var(--navy); }
-        .trust-badges { display: flex; gap: 0.6rem; margin-top: 2.5rem; flex-wrap: wrap; }
-        .trust-badge { display: flex; align-items: center; gap: 0.4rem; background: #fff; border: 1px solid var(--border); padding: 0.45rem 0.9rem; border-radius: var(--pill); font-size: 0.73rem; font-weight: 700; color: var(--navy); }
-        .trust-badge svg { width: 13px; height: 13px; stroke: var(--teal); }
-        .contact-form { background: #fff; border-radius: var(--radius-lg); padding: 2.5rem; border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
-        .contact-form h3 { font-size: 1.25rem; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; margin-bottom: 1.8rem; }
-        .field { margin-bottom: 1.1rem; }
-        .field label { display: block; font-size: 0.72rem; font-weight: 800; color: var(--text); margin-bottom: 0.35rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        .field input, .field textarea { width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--border); border-radius: 10px; font-family: inherit; font-size: 0.9rem; background: var(--bg-light); color: var(--navy); transition: border-color 0.2s, background 0.2s; }
-        .field input:focus, .field textarea:focus { outline: none; border-color: var(--teal); background: #fff; }
-        .field textarea { height: 100px; resize: vertical; }
-        .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-        .field-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-        .field-tab { padding: 0.45rem 1rem; border: 1.5px solid var(--border); border-radius: var(--pill); font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all 0.2s; background: var(--bg-light); color: var(--text-light); font-family: 'Montserrat', sans-serif; }
-        .field-tab.active, .field-tab:hover { border-color: var(--teal); color: var(--teal-dark); background: var(--bg-teal); }
+        .contact { padding: 7rem 2rem; background: var(--bg-section); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; }
+        .contact-left h2 { font-size: clamp(1.8rem, 2.8vw, 2.5rem); font-weight: 900; color: var(--dark); letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 0.9rem; }
+        .contact-left > p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 2.5rem; }
+        .contact-item { display: flex; gap: 0.9rem; align-items: center; margin-bottom: 1.1rem; }
+        .contact-icon { width: 42px; height: 42px; border-radius: 10px; background: #fff; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .contact-icon svg { width: 17px; height: 17px; stroke: var(--dark); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+        .contact-lbl { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; }
+        .contact-val { font-size: 0.9rem; font-weight: 700; color: var(--dark); }
+        .trust-badges { display: flex; gap: 0.5rem; margin-top: 2rem; flex-wrap: wrap; }
+        .trust-badge { display: flex; align-items: center; gap: 0.35rem; background: #fff; border: 1px solid var(--border); padding: 0.4rem 0.85rem; border-radius: var(--pill); font-size: 0.71rem; font-weight: 700; color: var(--dark); }
+        .trust-badge svg { width: 12px; height: 12px; stroke: var(--yellow); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+        .contact-form { background: #fff; border-radius: var(--radius-lg); padding: 2.5rem; border: 1px solid var(--border); box-shadow: var(--shadow); }
+        .contact-form h3 { font-size: 1.2rem; font-weight: 800; color: var(--dark); letter-spacing: -0.025em; margin-bottom: 0.35rem; }
+        .form-sub { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1.8rem; }
+        .field { margin-bottom: 1rem; }
+        .field label { display: block; font-size: 0.7rem; font-weight: 700; color: var(--dark); margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 0.06em; }
+        .field input, .field textarea { width: 100%; padding: 0.7rem 1rem; border: 1.5px solid var(--border); border-radius: 10px; font-family: inherit; font-size: 0.875rem; background: var(--bg-light); color: var(--dark); transition: border-color 0.15s, background 0.15s; }
+        .field input:focus, .field textarea:focus { outline: none; border-color: var(--yellow); background: #fff; box-shadow: 0 0 0 3px rgba(245,196,0,0.12); }
+        .field textarea { height: 95px; resize: vertical; }
+        .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+        .field-tabs { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+        .field-tab { padding: 0.4rem 0.9rem; border: 1.5px solid var(--border); border-radius: var(--pill); font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: all 0.15s; background: var(--bg-light); color: var(--text-muted); font-family: 'Montserrat', sans-serif; }
+        .field-tab.active, .field-tab:hover { border-color: var(--yellow); color: var(--dark); background: var(--yellow-pale); }
 
         /* FOOTER */
-        footer { background: var(--navy); color: #fff; padding: 4rem 2rem 2rem; }
+        footer { background: var(--dark); color: #fff; padding: 4rem 2rem 2rem; }
         .footer-inner { max-width: 1240px; margin: 0 auto; }
         .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
-        .footer-brand p { font-size: 0.84rem; color: rgba(255,255,255,0.4); line-height: 1.75; margin-top: 1rem; max-width: 280px; }
-        .footer-col h4 { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(255,255,255,0.3); margin-bottom: 1.2rem; }
-        .footer-col a { display: block; color: rgba(255,255,255,0.58); text-decoration: none; font-size: 0.84rem; padding: 0.3rem 0; transition: color 0.2s; font-weight: 500; }
+        .footer-brand .logo-name { color: #fff; }
+        .footer-brand .logo-name span { color: var(--yellow); }
+        .footer-brand p { font-size: 0.82rem; color: rgba(255,255,255,0.35); line-height: 1.8; margin-top: 1rem; max-width: 280px; }
+        .footer-col h4 { font-size: 0.67rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(255,255,255,0.25); margin-bottom: 1.2rem; }
+        .footer-col a { display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.83rem; padding: 0.28rem 0; transition: color 0.15s; font-weight: 500; }
         .footer-col a:hover { color: #fff; }
-        .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 1.5rem; font-size: 0.75rem; color: rgba(255,255,255,0.28); }
-
-        /* ANIMATIONS */
-        .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
-        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 1.5rem; font-size: 0.73rem; color: rgba(255,255,255,0.22); flex-wrap: wrap; gap: 0.5rem; }
 
         /* RESPONSIVE */
         @media (max-width: 1024px) {
-            .hero::after { display: none; }
-            .hero-inner, .b2b-grid, .contact-grid { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 3.2rem; }
+            .hero-inner, .contact-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 3rem; }
             .hero-visual { display: none; }
-            .b2b-img-wrap { display: none; }
-            .cat-grid, .how-wrap { grid-template-columns: repeat(2,1fr); }
+            .how-grid { grid-template-columns: 1fr; border-radius: var(--radius); }
             .how-step { border-right: none; border-bottom: 1px solid var(--border); }
             .how-step:last-child { border-bottom: none; }
+            .feat-grid { grid-template-columns: repeat(2,1fr); } /* tablet: 2 cols */
+            .benefit-grid { grid-template-columns: 1fr 1fr; }
             .sectors-grid { grid-template-columns: repeat(3,1fr); }
             .stats-row { grid-template-columns: repeat(2,1fr); }
             .stat-cell:nth-child(2) { border-right: none; }
+            .stat-cell:nth-child(3) { border-right: 1px solid rgba(255,255,255,0.1); }
             .test-grid { grid-template-columns: 1fr; }
-            .team-grid { grid-template-columns: repeat(2,1fr); }
             .footer-top { grid-template-columns: 1fr 1fr; }
-            .bband { grid-template-columns: 1fr; }
         }
         @media (max-width: 768px) {
             .nav-links, .nav-cta-group { display: none; }
             .mobile-btn { display: block; }
-            .hero { padding: 7rem 1.5rem 3rem; min-height: auto; }
-            .hero h1 { font-size: 2.5rem; }
-            .cat-grid, .how-wrap { grid-template-columns: 1fr; }
-            .how-wrap { display: flex; flex-direction: column; }
+            .hero { padding: 6.5rem 1.5rem 3rem; }
+            .hero h1 { font-size: 2.4rem; }
+            .feat-grid { grid-template-columns: 1fr; }
+            .benefit-grid { grid-template-columns: 1fr; }
             .sectors-grid { grid-template-columns: repeat(2,1fr); }
-            .stats-row { grid-template-columns: 1fr 1fr; }
-            .team-grid { grid-template-columns: 1fr 1fr; }
+            .stats-row { grid-template-columns: 1fr 1fr; border-radius: var(--radius); }
             .footer-top { grid-template-columns: 1fr; gap: 2rem; }
-            .bband { padding: 2.5rem 1.5rem; }
-            .b2b-cta-box { padding: 2.5rem 1.5rem; }
-            .aud-switch { flex-direction: column; align-items: stretch; padding: 2rem 1.5rem 0; }
-            .sw-btn { text-align: center; }
+            .cta-box { padding: 2.5rem 1.5rem; }
+            .problem-band { padding: 4rem 1.5rem; }
+            .how-section, .feat-section, .benefit-section, .stats-section, .sectors-section, .testimonials-section, .contact { padding: 5rem 1.5rem; }
         }
     </style>
 </head>
@@ -333,18 +287,18 @@
     <div class="nav-inner">
         <a href="#" class="logo">
             <div class="logo-mark"><img src="BB_logo.svg" alt="brokerbrain logo"></div>
-            <span class="logo-name">broker<span style="color:var(--teal)">brain</span></span>
+            <span class="logo-name">broker<span>brain</span></span>
         </a>
         <ul class="nav-links">
-            <li><a href="#clienti">Per i Clienti</a></li>
-            <li><a href="#partner">Per i Partner</a></li>
+            <li><a href="#come-funziona">Come Funziona</a></li>
+            <li><a href="#vantaggi">I Vantaggi</a></li>
+            <li><a href="#settori">Settori</a></li>
             <span class="nav-sep"></span>
-            <!-- <li><a href="#team">Team</a></li> -->
             <li><a href="#contatti">Contatti</a></li>
         </ul>
         <div class="nav-cta-group">
-            <a href="#clienti" class="btn btn-outline">Come funziona</a>
-            <a href="#contatti" class="btn btn-teal">Diventa Partner</a>
+            <a href="#contatti" class="btn btn-outline">Richiedi una Demo</a>
+            <a href="#contatti" class="btn btn-primary">Diventa Partner</a>
         </div>
         <button class="mobile-btn" id="mobileBtn" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -356,403 +310,253 @@
         <div class="hero-content fade-up">
             <div class="hero-eyebrow">
                 <span class="dot"></span>
-                Attivo su oltre 500 punti vendita in Italia
+                Piattaforma AI per partner commerciali
             </div>
-            <h1>Paga a rate ciò che <em>conta davvero.</em></h1>
-            <p class="hero-sub">Broker-Brain rende il credito accessibile a tutti. Finanziamenti istantanei per i clienti, più vendite per i partner. Tutto potenziato dall'intelligenza artificiale.</p>
+            <h1>Il tuo cliente vuole comprare. Dagli un modo per <em>farlo.</em></h1>
+            <p class="hero-sub">Broker-Brain porta il credito al consumo direttamente nel tuo punto vendita. Offri le rate, aumenti le vendite, incassi in 48 ore. Zero rischio, zero burocrazia.</p>
             <div class="hero-ctas">
-                <a href="#clienti" class="btn btn-primary btn-xl">
-                    Scopri le soluzioni
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                <a href="#contatti" class="btn btn-primary btn-xl">
+                    Diventa Partner
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
                 </a>
-                <a href="#partner" class="btn btn-outline btn-xl">Sei un'azienda?</a>
+                <a href="#come-funziona" class="btn btn-outline btn-xl">Come funziona</a>
             </div>
             <div class="hero-proof">
                 <div class="hero-proof-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                    <span><strong>9 su 10</strong> clienti approvati</span>
-                </div>
-                <div class="hero-proof-item">
                     <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    <span>Risposta in <strong>30 secondi</strong></span>
+                    <span>Attivazione in <strong>24 ore</strong></span>
                 </div>
                 <div class="hero-proof-item">
                     <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    <span><strong>Zero</strong> costi nascosti</span>
+                    <span><strong>Zero</strong> costi di setup</span>
                 </div>
             </div>
         </div>
         <div class="hero-visual">
-            <img src="img/persona.svg" alt="Broker-Brain finanziamenti" class="hero-img">
+            <img src="img/prestito2.svg" alt="Broker-Brain partner" class="hero-img">
             <div class="hero-badge hb-1">
                 <div class="badge-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--dark)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
                 </div>
                 <div>
-                    <div class="badge-num">9/10</div>
-                    <div class="badge-txt">Clienti approvati</div>
+                    <div class="badge-num">+20%</div>
+                    <div class="badge-txt">Vendite in più</div>
                 </div>
             </div>
             <div class="hero-badge hb-2">
                 <div class="badge-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--dark)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 </div>
                 <div>
-                    <div class="badge-num">30s</div>
-                    <div class="badge-txt">Risposta AI</div>
+                    <div class="badge-num">48h</div>
+                    <div class="badge-txt">Vendita conclusa</div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- AUDIENCE SWITCH -->
-<div class="aud-switch" id="audienceSwitch">
-    <button class="sw-btn active" data-target="clienti" onclick="switchTo('clienti')">Sono un Cliente</button>
-    <button class="sw-btn" data-target="partner" onclick="switchTo('partner')">Sono un Partner / Azienda</button>
-</div>
+<!-- PROBLEM BAND -->
+<section class="problem-band">
+    <div class="problem-band-inner fade-up">
+        <div class="label">Il problema che ogni partner conosce</div>
+        <div class="problem-q">Il preventivo alto <em>blocca la vendita?</em></div>
+        <p class="problem-sub">Quando un cliente vede un conto elevato, la prima reazione è "ci devo pensare". Senza un'opzione di pagamento flessibile, quella vendita è già persa — e il concorrente che offre le rate la chiude al posto tuo.</p>
+        <div class="problem-divider"></div>
+        <div class="problem-sol">La soluzione è la Convenzione Broker-Brain.</div>
+        <p class="problem-sol-sub">Offriamo soluzioni creditizie da €3.000 a €300.000 per clienti privati e aziende.</p>
+        <a href="#contatti" class="btn btn-primary btn-lg">
+            Attiva la Convenzione
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+</section>
 
-<!-- B2C -->
-<section class="b2c" id="clienti">
+<!-- COME FUNZIONA -->
+<section class="how-section" id="come-funziona">
     <div class="inner">
-
         <div class="sec-head c fade-up">
-            <div class="label">Per i Clienti</div>
-            <h2>Il finanziamento che si adatta a te</h2>
-            <p>Accedi a rate flessibili per le spese che contano: dalla cura dei denti alla riparazione dell'auto, dall'ottica alle cure veterinarie.</p>
-        </div>
-
-        <div class="sec-head fade-up" style="margin-bottom:1.5rem">
             <div class="label">Come funziona</div>
-            <h2 style="font-size:clamp(1.8rem,2.8vw,2.4rem)">Tre passi, trenta secondi.</h2>
+            <h2>Attivo in 24 ore. Funziona da subito.</h2>
+            <p>Tre passi separano il tuo business dall'offerta del pagamento a rate. Nessun tecnico, nessun costo nascosto.</p>
         </div>
-        <div class="how-wrap fade-up">
+        <div class="how-grid fade-up">
             <div class="how-step">
                 <div class="how-num">01</div>
-                <img src="img/soldi2.svg" alt="Richiesta">
-                <h4>Richiedi in 30 secondi</h4>
-                <p>Compila la richiesta dal tuo telefono o direttamente in negozio. Nessun documento cartaceo, bastano pochi dati.</p>
+                <img src="img/soldi.svg" alt="Firma la convenzione">
+                <h4>Firma la convenzione con il mediatore creditizio</h4>
+                <p>Processo 100% digitale. Firma in pochi minuti, ti attiviamo entro 24 ore. Ricevi QR code e link personalizzato per il tuo punto vendita. Nessun costo fisso, nessun tecnico.</p>
             </div>
             <div class="how-step">
                 <div class="how-num">02</div>
-                <img src="img/soldi3.svg" alt="Approvazione AI">
-                <h4>Approvazione immediata</h4>
-                <p>La nostra AI analizza la tua richiesta istantaneamente. 9 clienti su 10 vengono approvati senza intoppi.</p>
+                <img src="img/soldi2.svg" alt="Il cliente sceglie le rate">
+                <h4>Il cliente sceglie le rate</h4>
+                <p>Il cliente compila la richiesta in 30 secondi dal suo smartphone. La nostra AI analizza il profilo e risponde in tempo reale. Piani da 24 a 120 mesi, 9 richieste verificate su 10 approvate.</p>
             </div>
             <div class="how-step">
                 <div class="how-num">03</div>
-                <img src="img/soldi.svg" alt="Rata mensile">
-                <h4>Scegli la tua rata</h4>
-                <p>Da 3 a 72 mesi, rate fisse e trasparenti. Scegli il piano che si adatta al tuo budget, senza sorprese.</p>
+                <img src="img/soldi3.svg" alt="Tu incassi">
+                <h4>Chiudi la vendita in 48 ore</h4>
+                <p>Il cliente riceve il finanziamento sul suo conto entro 48 ore dall'approvazione. La vendita si conclude e il rischio di insolvenza non è mai affar tuo.</p>
             </div>
         </div>
-
-        <div class="sec-head fade-up" style="margin-bottom:2rem">
-            <div class="label">Soluzioni</div>
-            <h2 style="font-size:clamp(1.8rem,2.8vw,2.4rem)">Per cosa puoi usarlo</h2>
-        </div>
-        <div class="cat-grid fade-up">
-            <div class="cat-card">
-                <div class="cat-vis" style="background:linear-gradient(135deg,var(--bg-teal),#fff)">
-                    <img src="img/dentist.svg" alt="Cure Dentali">
-                </div>
-                <div class="cat-body">
-                    <h4>Cure Dentali</h4>
-                    <p>Impianti, ortodonzia, igiene professionale</p>
-                    <a href="#contatti" class="link-arr">Scopri di più <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></a>
-                </div>
-            </div>
-            <div class="cat-card">
-                <div class="cat-vis" style="background:linear-gradient(135deg,#EEF4FF,#fff)">
-                    <img src="img/auto.svg" alt="Riparazione Auto">
-                </div>
-                <div class="cat-body">
-                    <h4>Riparazione Auto</h4>
-                    <p>Tagliando, pneumatici, carrozzeria</p>
-                    <a href="#contatti" class="link-arr">Scopri di più <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></a>
-                </div>
-            </div>
-            <div class="cat-card">
-                <div class="cat-vis" style="background:linear-gradient(135deg,#FFF8E8,#fff)">
-                    <img src="img/casa.svg" alt="Casa e Servizi">
-                </div>
-                <div class="cat-body">
-                    <h4>Casa e Servizi</h4>
-                    <p>Ristrutturazioni, impianti, arredo</p>
-                    <a href="#contatti" class="link-arr">Scopri di più <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></a>
-                </div>
-            </div>
-            <div class="cat-card">
-                <div class="cat-vis" style="background:linear-gradient(135deg,#FFF0F0,#fff)">
-                    <img src="img/veterinario.svg" alt="Cure Veterinarie">
-                </div>
-                <div class="cat-body">
-                    <h4>Cure Veterinarie</h4>
-                    <p>Interventi, controlli, terapie</p>
-                    <a href="#contatti" class="link-arr">Scopri di più <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></a>
-                </div>
-            </div>
-            <div class="cat-card">
-                <div class="cat-vis" style="background:linear-gradient(135deg,#F0FFFE,#fff)">
-                    <img src="img/relax.svg" alt="Salute e Benessere">
-                </div>
-                <div class="cat-body">
-                    <h4>Salute e Benessere</h4>
-                    <p>Visite specialistiche, trattamenti, centri estetici</p>
-                    <a href="#contatti" class="link-arr">Scopri di più <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></a>
-                </div>
-            </div>
-            <div class="cat-card">
-                <div class="cat-vis" style="background:linear-gradient(135deg,#F5F0FF,#fff)">
-                    <img src="img/prestito.svg" alt="Finanziamenti Personali">
-                </div>
-                <div class="cat-body">
-                    <h4>Finanziamenti Personali</h4>
-                    <p>Liquidità, spese improvvise, progetti personali</p>
-                    <a href="#contatti" class="link-arr">Scopri di più <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></a>
-                </div>
-            </div>
-        </div>
-
-        <div class="bband fade-up">
-            <div>
-                <div class="label" style="color:var(--teal-light)">I numeri</div>
-                <h3>Non rinunciare a ciò che ti serve. Paga come vuoi tu.</h3>
-                <p>Con Broker-Brain, la tua richiesta viene valutata in 30 secondi dall'intelligenza artificiale. Nessun documento cartaceo, nessuna attesa.</p>
-                <a href="#contatti" class="btn btn-primary btn-lg">
-                    Verifica la tua idoneità
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-                </a>
-            </div>
-            <div class="bstats">
-                <div class="bstat"><div class="num">9/10</div><div class="desc">Clienti approvati</div></div>
-                <div class="bstat"><div class="num">30s</div><div class="desc">Tempo di risposta</div></div>
-                <div class="bstat"><div class="num">0€</div><div class="desc">Costi nascosti</div></div>
-                <div class="bstat"><div class="num">72</div><div class="desc">Mesi max rata</div></div>
-            </div>
-        </div>
-
     </div>
 </section>
 
-<!-- B2B -->
-<section class="b2b" id="partner">
+<!-- I VANTAGGI -->
+<section class="feat-section" id="vantaggi">
     <div class="inner">
-
         <div class="sec-head c fade-up">
-            <div class="label">Per i Partner</div>
-            <h2>Offri il pagamento a rate. Incassi subito.</h2>
-            <p>Integra Broker-Brain nel tuo punto vendita e trasforma ogni preventivo in una vendita chiusa.</p>
+            <div class="label">Perché Broker-Brain</div>
+            <h2>Tutto quello che ti serve. Niente di quello che non vuoi.</h2>
+            <p>Una piattaforma costruita per chi vende ogni giorno e non ha tempo da perdere con complicazioni inutili.</p>
         </div>
-
-        <div class="b2b-grid fade-up">
-            <div class="b2b-text">
-                <h3>Più vendite. Meno preventivi rifiutati. Zero rischio.</h3>
-                <p>Quando un cliente riceve un preventivo alto, la reazione è spesso "ci devo pensare". Con Broker-Brain, trasformi quel momento in un "sì" immediato offrendo rate accessibili.</p>
-                <ul class="b2b-list">
-                    <li><div class="chk"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Incasso garantito entro 48 ore</li>
-                    <li><div class="chk"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Nessun rischio di insolvenza — lo gestiamo noi</li>
-                    <li><div class="chk"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Integrazione in 24 ore, senza sviluppo IT</li>
-                    <li><div class="chk"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Dashboard per monitorare ogni transazione</li>
-                    <li><div class="chk"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Compliance OAM e Banca d'Italia integrata</li>
-                </ul>
-                <div style="display:flex;gap:1rem;flex-wrap:wrap">
-                    <a href="#contatti" class="btn btn-teal btn-lg">Diventa Partner <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></a>
-                    <a href="#contatti" class="btn btn-outline btn-lg">Richiedi una demo</a>
-                </div>
+        <div class="feat-grid fade-up">
+            <div class="feat-card">
+                <div class="feat-icon"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+                <div class="feat-stat">+20%</div>
+                <h4>Aumento delle vendite</h4>
+                <p>I partner Broker-Brain chiudono in media il 40% in più di preventivi già nel primo mese. Il "ci penso" diventa "lo faccio adesso".</p>
             </div>
-            <div class="b2b-img-wrap">
-                <img src="img/prestito2.svg" alt="Partner Broker-Brain" class="b2b-img">
+            <div class="feat-card">
+                <div class="feat-icon"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+                <div class="feat-stat">48h</div>
+                <h4>Vendita conclusa</h4>
+                <p>Non aspetti che il cliente cambi idea. La validazione è immediata e la pratica è conclusa in poche ore. Il cliente riceve il finanziamento e tu fai la vendita.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                <div class="feat-stat">24h</div>
+                <h4>Attivazione immediata</h4>
+                <p>Convenzione digitale, zero burocrazia. Dal primo contatto all'attivazione: massimo 24 ore. Partiamo subito, tu guadagni subito.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+                <div class="feat-stat">20+</div>
+                <h4>Istituti convenzionati</h4>
+                <p>Tramite il nostro Broker Finanziario accedi alle migliori condizioni di oltre 20 banche e finanziarie. Il cliente ottiene sempre il tasso più conveniente sul mercato.</p>
             </div>
         </div>
+    </div>
+</section>
 
+<!-- COSA FACCIAMO PER TE -->
+<section class="benefit-section">
+    <div class="inner">
+        <div class="sec-head c fade-up">
+            <div class="label">I benefici</div>
+            <h2>Come Broker-Brain fa crescere il tuo business</h2>
+            <p>Uno strumento che cambia i numeri della tua attività in modo diretto e misurabile, mettendo in contatto la tua attività con i mediatori creditizi. Grazie all'AI e ai nostri partner, i negozianti possono beneficiare di una gestione finanziaria più efficiente e sicura.</p>
+        </div>
+        <div class="benefit-grid fade-up">
+            <div class="benefit-block">
+                <div class="benefit-num">01</div>
+                <h3>Aumentiamo la tua clientela</h3>
+                <p>Chi non ha liquidità immediata oggi non può acquistare da te. Con Broker-Brain quella barriera sparisce. Offri soluzioni creditizie vantaggiose a tutti i tuoi clienti — privati o aziende — e trasformi i "non posso permettermelo" in nuovi acquisti. La tua offerta diventa accessibile a una platea molto più ampia, senza cambiare nulla di ciò che vendi.</p>
+            </div>
+            <div class="benefit-block">
+                <div class="benefit-num">02</div>
+                <h3>Fidelizziamo i tuoi clienti</h3>
+                <p>Un cliente che acquista a rate è un cliente che si sente supportato, non forzato a rinunciare. Quella fiducia si trasforma in fedeltà: torna, acquista di più, ti consiglia ai conoscenti. Offrire una soluzione di pagamento flessibile crea fiducia e relazioni durature nel tempo.</p>
+            </div>
+            <div class="benefit-block">
+                <div class="benefit-num">03</div>
+                <h3>Facciamo crescere il tuo fatturato</h3>
+                <p>Preventivi più alti accettati, scontrino medio superiore, meno opportunità perse. I partner Broker-Brain registrano in media un aumento del 20% delle entrate nel primo anno. Una crescita misurabile, costante e progressiva fin dal primo mese di attivazione.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section" style="display:none">
+    <div class="inner">
+        <div class="sec-head c fade-up" style="margin-bottom:3rem">
+            <div class="label">I numeri</div>
+            <h2>I risultati parlano da soli</h2>
+        </div>
         <div class="stats-row fade-up">
             <div class="stat-cell">
-                <div class="n"><span data-target="500">0</span><span class="accent">+</span></div>
-                <div class="d">Partner attivi</div>
+                <div class="n"><span data-target="500">0</span>+</div>
+                <div class="d">Partner attivi in Italia</div>
             </div>
             <div class="stat-cell">
-                <div class="n"><span data-target="25000">0</span><span class="accent">+</span></div>
+                <div class="n"><span data-target="25000">0</span>+</div>
                 <div class="d">Pratiche erogate</div>
             </div>
             <div class="stat-cell">
-                <div class="n"><span class="accent">+</span><span data-target="40">0</span><span class="accent">%</span></div>
+                <div class="n">+<span data-target="40">0</span>%</div>
                 <div class="d">Aumento vendite medio</div>
             </div>
             <div class="stat-cell">
-                <div class="n"><span data-target="48">0</span><span class="accent">h</span></div>
+                <div class="n"><span data-target="48">0</span>h</div>
                 <div class="d">Per ricevere l'incasso</div>
             </div>
         </div>
+    </div>
+</section>
 
-        <div class="sectors-wrap fade-up">
-            <div class="sectors-lbl">Settori che serviamo</div>
-            <div class="sectors-grid">
-                <div class="sector-card"><img src="img/auto2.svg" alt="Automotive"><span>Automotive</span></div>
-                <div class="sector-card"><img src="img/dentist.svg" alt="Dentale"><span>Dentale</span></div>
-                <div class="sector-card"><img src="img/relax.svg" alt="Benessere"><span>Benessere</span></div>
-                <div class="sector-card"><img src="img/veterinario.svg" alt="Veterinario"><span>Veterinario</span></div>
-                <div class="sector-card"><img src="img/casa.svg" alt="Casa"><span>Casa & Servizi</span></div>
-                <div class="sector-card"><img src="img/prestito.svg" alt="Salute"><span>Finanziamento</span></div>
-            </div>
+<!-- SETTORI -->
+<section class="sectors-section" id="settori">
+    <div class="inner">
+        <div class="sec-head c fade-up">
+            <div class="label">Settori che serviamo</div>
+            <h2>Per ogni tipo di business</h2>
+            <p>Dalla clinica odontoiatrica alla carrozzeria, dall'arredamento alle cure veterinarie: Broker-Brain funziona per qualsiasi punto vendita che voglia offrire il pagamento a rate tramite un broker finanziario.</p>
         </div>
+        <div class="sectors-grid fade-up">
+            <div class="sector-card"><img src="img/auto2.svg" alt="Automotive"><span>Automotive</span></div>
+            <div class="sector-card"><img src="img/dentist.svg" alt="Dentale"><span>Dentale</span></div>
+            <div class="sector-card"><img src="img/relax.svg" alt="Benessere"><span>Benessere</span></div>
+            <div class="sector-card"><img src="img/veterinario.svg" alt="Veterinario"><span>Veterinario</span></div>
+            <div class="sector-card"><img src="img/casa.svg" alt="Casa"><span>Casa & Servizi</span></div>
+            <div class="sector-card"><img src="img/prestito.svg" alt="Salute"><span>Salute</span></div>
+        </div>
+        <div style="margin-top:2.5rem; text-align:center; padding-top:2rem; border-top:1px solid var(--border)">
+            <p style="font-size:0.875rem; color:var(--text-muted)">
+                Non trovi il tuo settore?&nbsp;
+                <a href="#contatti" class="link-arr">Operiamo in oltre 20 categorie
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                </a>
+            </p>
+        </div>
+    </div>
+</section>
 
-        <div class="sec-head fade-up" style="margin-bottom:2rem">
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+    <div class="inner">
+        <div class="sec-head c fade-up">
             <div class="label">Testimonial</div>
-            <h2 style="font-size:clamp(1.8rem,2.8vw,2.4rem)">Cosa dicono i nostri partner</h2>
+            <h2>Cosa dicono i nostri partner</h2>
         </div>
         <div class="test-grid fade-up">
             <div class="test-card">
                 <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-                <div class="test-q">"Da quando offriamo le rate con Broker-Brain, il 60% dei preventivi sopra i 1.000€ viene accettato. Prima era meno del 30%."</div>
+                <div class="test-q">"Da quando offriamo le rate con Broker-Brain, il 60% dei preventivi sopra i 5.000€ viene accettato. Prima era meno del 30%. È stata la svolta più concreta degli ultimi anni."</div>
                 <div class="test-author">Dr. Paolo Ferrara</div>
                 <div class="test-role">Titolare, Studio Dentistico Ferrara — Roma</div>
             </div>
             <div class="test-card">
                 <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-                <div class="test-q">"L'integrazione è stata immediata. I nostri clienti apprezzano la possibilità di rateizzare gli interventi. Noi incassiamo subito: è perfetto."</div>
+                <div class="test-q">"L'integrazione è stata immediata. I clienti apprezzano la possibilità di rateizzare. Noi incassiamo subito, senza rischi: è esattamente quello che cercavamo."</div>
                 <div class="test-author">Marco Betti</div>
                 <div class="test-role">Direttore, AutoService Betti — Milano</div>
             </div>
             <div class="test-card">
                 <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-                <div class="test-q">"Broker-Brain ci ha permesso di aumentare lo scontrino medio del 35%. I proprietari dei pet non devono più rinunciare alle cure."</div>
+                <div class="test-q">"Broker-Brain ci ha permesso di aumentare lo scontrino medio del 35%. I proprietari dei pet non devono più scegliere tra le cure e il portafoglio."</div>
                 <div class="test-author">Dr.ssa Elena Conti</div>
                 <div class="test-role">Veterinaria, Clinica ZampaFelice — Firenze</div>
             </div>
         </div>
-
-        <div class="b2b-cta-box fade-up">
-            <h3>Il tuo prossimo cliente è pronto a comprare. Dagli il modo di farlo.</h3>
-            <p>Attiva Broker-Brain nel tuo punto vendita in 24 ore. Nessun costo di setup, nessun rischio.</p>
+        <div class="cta-box fade-up">
+            <h3>Il tuo prossimo cliente è pronto a comprare.<br>Dagli il modo di farlo.</h3>
+            <p>Attiva la Convenzione Broker-Brain nel tuo punto vendita in 24 ore. Nessun costo di setup, nessun rischio.</p>
             <a href="#contatti" class="btn btn-primary btn-xl">
                 Attiva Broker-Brain gratis
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
             </a>
-        </div>
-
-    </div>
-</section>
-
-<!-- TEAM -->
-<section class="team" id="team" style="display:none">
-    <div class="inner">
-        <div class="sec-head fade-up">
-            <div class="label">Il nostro team</div>
-            <h2>Le persone dietro la tecnologia</h2>
-        </div>
-        <div class="team-grid fade-up">
-            <div class="team-card">
-                <div class="team-card-img">
-                    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
-                        <rect width="200" height="200" fill="#E0F6FB"/>
-                        <path d="M40 200 L40 148 C40 132 58 124 100 124 C142 124 160 132 160 148 L160 200Z" fill="#086788"/>
-                        <path d="M88 124 L100 144 L112 124" fill="white" fill-opacity="0.9"/>
-                        <path d="M100 130 L97 152 L100 158 L103 152Z" fill="#06AED5"/>
-                        <rect x="90" y="106" width="20" height="24" rx="6" fill="#C8956E"/>
-                        <ellipse cx="100" cy="88" rx="38" ry="42" fill="#C8956E"/>
-                        <path d="M62 80 C62 58 78 44 100 44 C122 44 138 58 138 80 C138 72 134 62 130 58 Q120 50 100 50 Q80 50 70 58 C66 62 62 72 62 80Z" fill="#2D1B0E"/>
-                        <ellipse cx="88" cy="88" rx="5" ry="5.5" fill="#2D1B0E"/>
-                        <ellipse cx="112" cy="88" rx="5" ry="5.5" fill="#2D1B0E"/>
-                        <circle cx="90" cy="86" r="1.5" fill="white"/>
-                        <circle cx="114" cy="86" r="1.5" fill="white"/>
-                        <path d="M88 102 Q100 112 112 102" stroke="#A0704A" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-                        <ellipse cx="62" cy="90" rx="7" ry="9" fill="#B8815E"/>
-                        <ellipse cx="138" cy="90" rx="7" ry="9" fill="#B8815E"/>
-                    </svg>
-                </div>
-                <div class="team-info">
-                    <h4>Marco Martellacci</h4>
-                    <div class="role">CEO & Founder</div>
-                    <p>15+ anni nel settore della mediazione creditizia e dei servizi finanziari.</p>
-                </div>
-            </div>
-            <div class="team-card">
-                <div class="team-card-img">
-                    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
-                        <rect width="200" height="200" fill="#E0F6FB"/>
-                        <path d="M40 200 L40 148 C40 132 58 124 100 124 C142 124 160 132 160 148 L160 200Z" fill="#086788"/>
-                        <path d="M86 124 L100 142 L114 124" fill="white" fill-opacity="0.9"/>
-                        <rect x="90" y="108" width="20" height="22" rx="6" fill="#D4A574"/>
-                        <ellipse cx="100" cy="88" rx="38" ry="42" fill="#D4A574"/>
-                        <path d="M62 78 C58 90 56 106 58 120 L70 110 C68 100 66 90 66 82Z" fill="#6B3A2A"/>
-                        <path d="M138 78 C142 90 144 106 142 120 L130 110 C132 100 134 90 134 82Z" fill="#6B3A2A"/>
-                        <path d="M62 80 C62 56 78 44 100 44 C122 44 138 56 138 80 C138 68 132 58 126 54 Q114 48 100 48 Q86 48 74 54 C68 58 62 68 62 80Z" fill="#6B3A2A"/>
-                        <rect x="78" y="82" width="18" height="14" rx="7" fill="none" stroke="#2D1B0E" stroke-width="2.5"/>
-                        <rect x="104" y="82" width="18" height="14" rx="7" fill="none" stroke="#2D1B0E" stroke-width="2.5"/>
-                        <line x1="96" y1="89" x2="104" y2="89" stroke="#2D1B0E" stroke-width="2"/>
-                        <ellipse cx="87" cy="89" rx="4" ry="4" fill="#2D1B0E"/>
-                        <ellipse cx="113" cy="89" rx="4" ry="4" fill="#2D1B0E"/>
-                        <circle cx="88.5" cy="87.5" r="1.2" fill="white"/>
-                        <circle cx="114.5" cy="87.5" r="1.2" fill="white"/>
-                        <path d="M88 104 Q100 114 112 104" stroke="#B5855A" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-                        <ellipse cx="62" cy="90" rx="7" ry="9" fill="#C49060"/>
-                        <ellipse cx="138" cy="90" rx="7" ry="9" fill="#C49060"/>
-                    </svg>
-                </div>
-                <div class="team-info">
-                    <h4>Laura Rossi</h4>
-                    <div class="role">CTO</div>
-                    <p>PhD in Machine Learning. Architetta delle soluzioni AI alla base della piattaforma.</p>
-                </div>
-            </div>
-            <div class="team-card">
-                <div class="team-card-img">
-                    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
-                        <rect width="200" height="200" fill="#E0F6FB"/>
-                        <path d="M38 200 L38 148 C38 132 56 122 100 122 C144 122 162 132 162 148 L162 200Z" fill="#086788"/>
-                        <path d="M82 122 L100 138 L118 122" fill="white" fill-opacity="0.85"/>
-                        <rect x="90" y="106" width="20" height="22" rx="6" fill="#E8B89A"/>
-                        <ellipse cx="100" cy="86" rx="40" ry="44" fill="#E8B89A"/>
-                        <circle cx="78" cy="68" r="14" fill="#1C0D06"/>
-                        <circle cx="92" cy="60" r="14" fill="#1C0D06"/>
-                        <circle cx="108" cy="60" r="14" fill="#1C0D06"/>
-                        <circle cx="122" cy="68" r="14" fill="#1C0D06"/>
-                        <circle cx="72" cy="80" r="10" fill="#1C0D06"/>
-                        <circle cx="128" cy="80" r="10" fill="#1C0D06"/>
-                        <path d="M62 82 C62 62 76 48 100 48 C124 48 138 62 138 82Z" fill="#1C0D06"/>
-                        <ellipse cx="88" cy="88" rx="5" ry="5.5" fill="#1C0D06"/>
-                        <ellipse cx="112" cy="88" rx="5" ry="5.5" fill="#1C0D06"/>
-                        <circle cx="89.5" cy="86.5" r="1.5" fill="white"/>
-                        <circle cx="113.5" cy="86.5" r="1.5" fill="white"/>
-                        <path d="M87 102 Q100 114 113 102" stroke="#C4845A" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-                        <ellipse cx="60" cy="90" rx="7" ry="9" fill="#D8A882"/>
-                        <ellipse cx="140" cy="90" rx="7" ry="9" fill="#D8A882"/>
-                    </svg>
-                </div>
-                <div class="team-info">
-                    <h4>Alessandro Bianchi</h4>
-                    <div class="role">Head of Product</div>
-                    <p>Ex consulente in digital transformation per il settore bancario.</p>
-                </div>
-            </div>
-            <div class="team-card">
-                <div class="team-card-img">
-                    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
-                        <rect width="200" height="200" fill="#E0F6FB"/>
-                        <path d="M38 200 L38 148 C38 132 56 124 100 124 C144 124 162 132 162 148 L162 200Z" fill="#086788"/>
-                        <path d="M84 124 L100 140 L116 124" fill="white" fill-opacity="0.95"/>
-                        <rect x="90" y="106" width="20" height="22" rx="6" fill="#C49060"/>
-                        <ellipse cx="100" cy="86" rx="38" ry="42" fill="#C49060"/>
-                        <path d="M64 78 C64 56 80 44 100 44 C120 44 136 56 136 78 C136 68 130 58 124 54 Q113 48 100 48 Q87 48 76 54 C70 58 64 68 64 78Z" fill="#3D1A08"/>
-                        <ellipse cx="100" cy="50" rx="18" ry="16" fill="#3D1A08"/>
-                        <line x1="82" y1="54" x2="96" y2="48" stroke="#06AED5" stroke-width="2.5" stroke-linecap="round"/>
-                        <circle cx="82" cy="54" r="3" fill="#06AED5"/>
-                        <ellipse cx="88" cy="88" rx="5" ry="5.5" fill="#2D1B0E"/>
-                        <ellipse cx="112" cy="88" rx="5" ry="5.5" fill="#2D1B0E"/>
-                        <circle cx="89.5" cy="86.5" r="1.5" fill="white"/>
-                        <circle cx="113.5" cy="86.5" r="1.5" fill="white"/>
-                        <path d="M87 102 Q100 114 113 102" stroke="#A0704A" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-                        <ellipse cx="62" cy="90" rx="7" ry="9" fill="#B8815E"/>
-                        <ellipse cx="138" cy="90" rx="7" ry="9" fill="#B8815E"/>
-                    </svg>
-                </div>
-                <div class="team-info">
-                    <h4>Giulia Ferretti</h4>
-                    <div class="role">Head of Compliance</div>
-                    <p>Esperta in regolamentazione OAM, antiriciclaggio e normativa bancaria.</p>
-                </div>
-            </div>
         </div>
     </div>
 </section>
@@ -763,46 +567,71 @@
         <div class="contact-grid">
             <div class="contact-left fade-up">
                 <div class="label">Contatti</div>
-                <h2>Parliamone.<br>Senza impegno.</h2>
-                <p>Che tu sia un cliente alla ricerca di un finanziamento o un'azienda che vuole offrire il pagamento a rate, siamo qui per te.</p>
+                <h2>Parliamo del tuo business.</h2>
+                <p>Sei un professionista, un'azienda o un punto vendita che vuole offrire il pagamento a rate? Scrivici: ti richiamiamo entro 24 ore per una consulenza gratuita e senza impegno.</p>
                 <div class="contact-item">
-                    <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-                    <div><div class="contact-lbl">Email</div><div class="contact-val">info@broker-brain.com</div></div>
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </div>
+                    <div>
+                        <div class="contact-lbl">Email</div>
+                        <div class="contact-val">partner@broker-brain.com</div>
+                    </div>
                 </div>
                 <div class="contact-item">
-                    <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-                    <div><div class="contact-lbl">Telefono</div><div class="contact-val">+39 02 1234 5678</div></div>
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </div>
+                    <div>
+                        <div class="contact-lbl">Telefono</div>
+                        <div class="contact-val">+39 349 2112515</div>
+                    </div>
                 </div>
                 <div class="contact-item">
-                    <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-                    <div><div class="contact-lbl">Sede</div><div class="contact-val">Milano, Italia</div></div>
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <div>
+                        <div class="contact-lbl">Sede</div>
+                        <div class="contact-val">Via Vela 42, 10128 Torino</div>
+                    </div>
                 </div>
                 <div class="trust-badges">
-                    <div class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Iscritti OAM</div>
-                    <div class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> GDPR Compliant</div>
-                    <div class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Banca d'Italia</div>
-                    <div class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Risposta 24h</div>
+                    <div class="trust-badge">
+                        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        GDPR Compliant
+                    </div>
+                    <div class="trust-badge">
+                        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        Risposta 24h
+                    </div>
                 </div>
             </div>
             <form class="contact-form fade-up" onsubmit="handleSubmit(event)">
-                <h3>Scrivici</h3>
+                <h3>Richiedi la Convenzione</h3>
+                <p class="form-sub">Consulenza gratuita e senza impegno. Ti rispondiamo entro 24 ore.</p>
                 <div class="field">
-                    <label>Sono un...</label>
+                    <label>Tipo di attività</label>
                     <div class="field-tabs">
-                        <span class="field-tab active" onclick="selectTab(this)">Cliente privato</span>
-                        <span class="field-tab" onclick="selectTab(this)">Azienda / Partner</span>
-                        <span class="field-tab" onclick="selectTab(this)">Rivenditore auto</span>
-                        <span class="field-tab" onclick="selectTab(this)">Studio dentistico</span>
+                        <span class="field-tab active" onclick="selectTab(this)">Studio dentistico</span>
+                        <span class="field-tab" onclick="selectTab(this)">Automotive</span>
+                        <span class="field-tab" onclick="selectTab(this)">Veterinario</span>
+                        <span class="field-tab" onclick="selectTab(this)">Casa & Servizi</span>
+                        <span class="field-tab" onclick="selectTab(this)">Altro settore</span>
                     </div>
                 </div>
                 <div class="field-row">
                     <div class="field"><label>Nome</label><input type="text" placeholder="Il tuo nome" required></div>
                     <div class="field"><label>Cognome</label><input type="text" placeholder="Il tuo cognome" required></div>
                 </div>
-                <div class="field"><label>Email</label><input type="email" placeholder="nome@email.it" required></div>
-                <div class="field"><label>Telefono</label><input type="tel" placeholder="+39 ..."></div>
-                <div class="field"><label>Messaggio</label><textarea placeholder="Come possiamo aiutarti?"></textarea></div>
-                <button type="submit" class="btn btn-teal btn-lg" style="width:100%;justify-content:center">Invia richiesta</button>
+                <div class="field"><label>Nome attività / azienda</label><input type="text" placeholder="Es. Studio Rossi, AutoService Betti…" required></div>
+                <div class="field"><label>Email</label><input type="email" placeholder="nome@azienda.it" required></div>
+                <div class="field"><label>Telefono</label><input type="tel" placeholder="+39 …"></div>
+                <div class="field"><label>Messaggio (facoltativo)</label><textarea placeholder="Raccontaci la tua attività…"></textarea></div>
+                <button type="submit" class="btn btn-dark btn-lg" style="width:100%;justify-content:center">
+                    Richiedi la Convenzione
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                </button>
             </form>
         </div>
     </div>
@@ -815,23 +644,23 @@
             <div class="footer-brand">
                 <a href="#" class="logo">
                     <div class="logo-mark"><img src="BB_logo.svg" alt="brokerbrain logo"></div>
-                    <span class="logo-name" style="color:#fff">broker<span style="color:var(--teal-light)">brain</span></span>
+                    <span class="logo-name">broker<span>brain</span></span>
                 </a>
-                <p>Finanziamenti accessibili per ciò che conta. Tecnologia AI al servizio di clienti e partner.</p>
+                <p>La piattaforma AI che porta il credito al consumo nel tuo punto vendita. Più vendite, incasso garantito, zero rischi.</p>
             </div>
             <div class="footer-col">
-                <h4>Per i Clienti</h4>
-                <a href="#clienti">Come funziona</a>
-                <a href="#clienti">Settori</a>
-                <a href="#contatti">Verifica idoneità</a>
-                <a href="#">FAQ</a>
-            </div>
-            <div class="footer-col">
-                <h4>Per i Partner</h4>
-                <a href="#partner">Vantaggi</a>
-                <a href="#partner">Settori</a>
+                <h4>Come Funziona</h4>
+                <a href="#come-funziona">Il processo in 3 passi</a>
+                <a href="#vantaggi">I vantaggi</a>
+                <a href="#settori">Settori</a>
                 <a href="#contatti">Diventa partner</a>
-                <a href="#team">Team</a>
+            </div>
+            <div class="footer-col">
+                <h4>Azienda</h4>
+                <a href="#contatti">Chi siamo</a>
+                <a href="#contatti">Lavora con noi</a>
+                <a href="#contatti">Blog</a>
+                <a href="#contatti">Contatti</a>
             </div>
             <div class="footer-col">
                 <h4>Legale</h4>
@@ -842,19 +671,21 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <span>&copy; 2026 Broker-Brain S.r.l. — Tutti i diritti riservati</span>
-            <span>P.IVA 00000000000 — Iscrizione OAM n. M00000</span>
+            <span>© 2026 Broker-Brain S.r.l. — Tutti i diritti riservati</span>
+            <span>C.F. 134236400113 — Numero REA 1361882 — Iscrizione OAM n. M00000</span>
         </div>
     </div>
 </footer>
 
 <script>
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 20);
+    });
 
     const obs = new IntersectionObserver(entries => {
         entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
     const counterObs = new IntersectionObserver(entries => {
@@ -862,7 +693,8 @@
             if (!entry.isIntersecting) return;
             const el = entry.target;
             const target = parseInt(el.dataset.target);
-            const duration = 2000; const start = performance.now();
+            const duration = 1800;
+            const start = performance.now();
             const animate = now => {
                 const p = Math.min((now - start) / duration, 1);
                 const eased = 1 - Math.pow(1 - p, 3);
@@ -873,21 +705,15 @@
             counterObs.unobserve(el);
         });
     }, { threshold: 0.3 });
-    document.querySelectorAll('[data-target]').forEach(el => counterObs.observe(el));
+    document.querySelectorAll('span[data-target]').forEach(el => counterObs.observe(el));
 
     document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', e => {
             e.preventDefault();
             const t = document.querySelector(a.getAttribute('href'));
-            if (t) window.scrollTo({ top: t.offsetTop - 80, behavior: 'smooth' });
+            if (t) window.scrollTo({ top: t.offsetTop - 78, behavior: 'smooth' });
         });
     });
-
-    function switchTo(target) {
-        document.querySelectorAll('.sw-btn').forEach(b => b.classList.toggle('active', b.dataset.target === target));
-        const el = document.getElementById(target);
-        if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
-    }
 
     function selectTab(el) {
         el.parentNode.querySelectorAll('.field-tab').forEach(t => t.classList.remove('active'));
@@ -897,8 +723,15 @@
     function handleSubmit(e) {
         e.preventDefault();
         const btn = e.target.querySelector('button[type="submit"]');
-        btn.textContent = '✓ Richiesta inviata!'; btn.style.background = 'var(--teal-dark)';
-        setTimeout(() => { btn.textContent = 'Invia richiesta'; btn.style.background = ''; e.target.reset(); }, 3000);
+        btn.textContent = 'Inviato! Ti contatteremo presto.';
+        btn.style.background = '#1F2937';
+        btn.disabled = true;
+        setTimeout(() => {
+            btn.textContent = 'Richiedi la Convenzione';
+            btn.style.background = '';
+            btn.disabled = false;
+            e.target.reset();
+        }, 4000);
     }
 </script>
 
