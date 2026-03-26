@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Policy — Broker-Brain</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --yellow:       #F5C400;
+            --yellow-hover: #D9AF00;
+            --yellow-pale:  #FFFBEB;
+            --dark:         #111827;
+            --dark-2:       #1F2937;
+            --text:         #374151;
+            --text-muted:   #6B7280;
+            --bg:           #FFFFFF;
+            --bg-light:     #F9FAFB;
+            --bg-section:   #F3F4F6;
+            --border:       #E5E7EB;
+            --border-dark:  #D1D5DB;
+            --radius:       12px;
+            --pill:         100px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+            background: var(--bg);
+        }
+
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+        }
+        .nav-inner {
+            max-width: 1240px; margin: 0 auto; padding: 0 2rem;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 70px;
+        }
+        .logo { display: flex; align-items: center; gap: 0.55rem; text-decoration: none; }
+        .logo-mark { width: 30px; height: 30px; }
+        .logo-mark img { width: 100%; height: 100%; display: block; }
+        .logo-name { font-size: 1.2rem; font-weight: 900; color: var(--dark); letter-spacing: -0.04em; }
+        .logo-name span { color: var(--yellow); }
+        .back-link {
+            font-size: 0.85rem; font-weight: 600; color: var(--text-muted);
+            text-decoration: none; display: flex; align-items: center; gap: 0.4rem;
+            transition: color 0.15s;
+        }
+        .back-link:hover { color: var(--dark); }
+        .back-link svg { width: 16px; height: 16px; }
+
+        .page-wrap {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 120px 2rem 6rem;
+        }
+
+        .page-header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 2rem;
+            margin-bottom: 3rem;
+        }
+        .page-label {
+            display: inline-block; font-size: 0.7rem; font-weight: 800;
+            color: var(--yellow); text-transform: uppercase; letter-spacing: 0.14em;
+            margin-bottom: 0.75rem;
+        }
+        .page-header h1 {
+            font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900;
+            color: var(--dark); letter-spacing: -0.04em; line-height: 1.1;
+            margin-bottom: 0.75rem;
+        }
+        .page-header .meta {
+            font-size: 0.82rem; color: var(--text-muted); font-weight: 500;
+        }
+
+        .policy-section { margin-bottom: 2.5rem; }
+        .policy-section h2 {
+            font-size: 1.1rem; font-weight: 800; color: var(--dark);
+            letter-spacing: -0.02em; margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--yellow-pale);
+        }
+        .policy-section h3 {
+            font-size: 0.95rem; font-weight: 700; color: var(--dark-2);
+            margin: 1.25rem 0 0.5rem;
+        }
+        .policy-section p {
+            font-size: 0.9rem; color: var(--text); line-height: 1.85;
+            margin-bottom: 0.75rem;
+        }
+        .policy-section ul {
+            list-style: none; margin: 0.5rem 0 0.75rem 0;
+        }
+        .policy-section ul li {
+            font-size: 0.9rem; color: var(--text); line-height: 1.85;
+            padding-left: 1.2rem; position: relative; margin-bottom: 0.3rem;
+        }
+        .policy-section ul li::before {
+            content: '—'; position: absolute; left: 0;
+            color: var(--yellow); font-weight: 700;
+        }
+
+        /* Cookie table */
+        .cookie-table {
+            width: 100%; border-collapse: collapse;
+            margin: 1rem 0 1.5rem;
+            font-size: 0.83rem;
+        }
+        .cookie-table th {
+            background: var(--bg-section);
+            font-weight: 700; color: var(--dark);
+            padding: 0.65rem 1rem; text-align: left;
+            border-bottom: 2px solid var(--border-dark);
+        }
+        .cookie-table td {
+            padding: 0.65rem 1rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+            vertical-align: top;
+        }
+        .cookie-table tr:last-child td { border-bottom: none; }
+        .cookie-table tr:hover td { background: var(--bg-light); }
+
+        .banner-box {
+            background: var(--yellow-pale);
+            border: 1.5px solid var(--yellow);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            margin: 1rem 0 1.5rem;
+        }
+        .banner-box p { margin-bottom: 0; font-size: 0.88rem; }
+
+        footer { background: var(--dark); color: #fff; padding: 2.5rem 2rem; }
+        .footer-inner { max-width: 1240px; margin: 0 auto; }
+        .footer-bottom {
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 0.73rem; color: rgba(255,255,255,0.3); flex-wrap: wrap; gap: 0.5rem;
+        }
+        .footer-bottom a { color: rgba(255,255,255,0.4); text-decoration: none; }
+        .footer-bottom a:hover { color: #fff; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="logo">
+            <div class="logo-mark"><img src="BB_logo.svg" alt="Broker-Brain logo"></div>
+            <span class="logo-name">broker<span>brain</span></span>
+        </a>
+        <a href="index.html" class="back-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+            Torna al sito
+        </a>
+    </div>
+</nav>
+
+<div class="page-wrap">
+    <div class="page-header">
+        <div class="page-label">Documento legale</div>
+        <h1>Cookie Policy</h1>
+        <p class="meta">Ultimo aggiornamento: 26 marzo 2026 — Versione 1.0</p>
+    </div>
+
+    <div class="policy-section">
+        <h2>1. Cosa sono i cookie</h2>
+        <p>I cookie sono piccoli file di testo che i siti web salvano sul dispositivo dell'utente durante la navigazione. Permettono al sito di ricordare le azioni e le preferenze dell'utente (ad esempio lingua, dimensione dei caratteri, altre impostazioni di visualizzazione) in modo da non doverle reinserire ad ogni visita.</p>
+        <p>I cookie possono essere <strong>di prima parte</strong> (impostati direttamente da questo sito) o <strong>di terza parte</strong> (impostati da domini diversi da quello visitato).</p>
+    </div>
+
+    <div class="policy-section">
+        <h2>2. Tipologie di cookie utilizzati</h2>
+
+        <h3>Cookie tecnici (sempre attivi)</h3>
+        <p>Sono strettamente necessari al funzionamento del sito e non richiedono consenso. Senza questi cookie alcune funzioni non sarebbero disponibili.</p>
+        <table class="cookie-table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Finalità</th>
+                    <th>Durata</th>
+                    <th>Tipo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>bb_session</code></td>
+                    <td>Gestione della sessione utente</td>
+                    <td>Sessione</td>
+                    <td>Prima parte</td>
+                </tr>
+                <tr>
+                    <td><code>bb_consent</code></td>
+                    <td>Memorizzazione delle preferenze cookie</td>
+                    <td>12 mesi</td>
+                    <td>Prima parte</td>
+                </tr>
+                <tr>
+                    <td><code>XSRF-TOKEN</code></td>
+                    <td>Protezione contro attacchi CSRF</td>
+                    <td>Sessione</td>
+                    <td>Prima parte</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Cookie analitici (previo consenso)</h3>
+        <p>Raccolgono informazioni aggregate e anonime sull'utilizzo del sito (pagine visitate, durata della sessione, provenienza del traffico) al fine di migliorare le prestazioni e i contenuti.</p>
+        <table class="cookie-table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Fornitore</th>
+                    <th>Finalità</th>
+                    <th>Durata</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>_ga</code></td>
+                    <td>Google Analytics</td>
+                    <td>Identificazione univoca degli utenti</td>
+                    <td>2 anni</td>
+                </tr>
+                <tr>
+                    <td><code>_ga_*</code></td>
+                    <td>Google Analytics</td>
+                    <td>Persistenza dello stato della sessione</td>
+                    <td>2 anni</td>
+                </tr>
+                <tr>
+                    <td><code>_gid</code></td>
+                    <td>Google Analytics</td>
+                    <td>Distinguere gli utenti</td>
+                    <td>24 ore</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Google Analytics è configurato in modalità anonimizzata (IP anonymization attivo) per ridurre al minimo la raccolta di dati personali. I dati sono trattati da Google LLC in qualità di responsabile del trattamento, ai sensi delle Clausole Contrattuali Standard UE.</p>
+
+        <h3>Cookie di profilazione e marketing (previo consenso)</h3>
+        <p>Utilizzati per mostrare annunci pertinenti agli interessi dell'utente e misurare l'efficacia delle campagne pubblicitarie. Attualmente il sito <strong>non utilizza</strong> cookie di profilazione di terze parti. Qualora venissero introdotti, questa policy sarà aggiornata e sarà richiesto apposito consenso.</p>
+    </div>
+
+    <div class="policy-section">
+        <h2>3. Gestione del consenso</h2>
+        <div class="banner-box">
+            <p>Al primo accesso al sito viene mostrato un banner che consente di accettare, rifiutare o personalizzare le preferenze cookie. Le scelte vengono memorizzate nel cookie <code>bb_consent</code> per 12 mesi. Puoi modificare le tue preferenze in qualsiasi momento.</p>
+        </div>
+        <p>Il consenso ai cookie analitici e di profilazione è facoltativo: rifiutarlo non pregiudica la possibilità di utilizzare il sito. I cookie tecnici rimangono sempre attivi in quanto necessari al funzionamento.</p>
+    </div>
+
+    <div class="policy-section">
+        <h2>4. Come disabilitare i cookie dal browser</h2>
+        <p>Puoi bloccare o eliminare i cookie direttamente dalle impostazioni del tuo browser. Tieni presente che disabilitare tutti i cookie potrebbe compromettere alcune funzionalità del sito.</p>
+        <ul>
+            <li><strong>Google Chrome:</strong> Impostazioni → Privacy e sicurezza → Cookie e altri dati dei siti</li>
+            <li><strong>Mozilla Firefox:</strong> Impostazioni → Privacy e sicurezza → Cookie e dati dei siti web</li>
+            <li><strong>Safari:</strong> Preferenze → Privacy → Gestisci dati siti web</li>
+            <li><strong>Microsoft Edge:</strong> Impostazioni → Cookie e autorizzazioni sito → Cookie e dati del sito</li>
+        </ul>
+        <p>Per disattivare il tracciamento di Google Analytics puoi anche installare il componente aggiuntivo per il browser disponibile su <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">tools.google.com/dlpage/gaoptout</a>.</p>
+    </div>
+
+    <div class="policy-section">
+        <h2>5. Titolare del trattamento e contatti</h2>
+        <p>Il Titolare del trattamento dei dati raccolti tramite cookie è <strong>Broker-Brain S.r.l.</strong>, Via Vela 42, 10128 Torino. Per qualsiasi richiesta relativa ai cookie o alla privacy, scrivi a <a href="mailto:privacy@broker-brain.com">privacy@broker-brain.com</a>.</p>
+        <p>Per informazioni più ampie sul trattamento dei tuoi dati personali consulta la nostra <a href="privacy-policy.html">Privacy Policy</a>.</p>
+    </div>
+
+    <div class="policy-section">
+        <h2>6. Modifiche alla Cookie Policy</h2>
+        <p>Broker-Brain si riserva il diritto di aggiornare questa Cookie Policy in qualsiasi momento, in particolare in seguito all'introduzione di nuovi servizi o strumenti. Le modifiche saranno pubblicate su questa pagina con indicazione della data di aggiornamento.</p>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-inner">
+        <div class="footer-bottom">
+            <span>© 2026 Broker-Brain S.r.l. — Tutti i diritti riservati</span>
+            <span>
+                <a href="privacy-policy.html">Privacy Policy</a> &nbsp;·&nbsp;
+                <a href="cookie-policy.html">Cookie Policy</a>
+            </span>
+            <span>C.F. 134236400113 — Numero REA 1361882</span>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
